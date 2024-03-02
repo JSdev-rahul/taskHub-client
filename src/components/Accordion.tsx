@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
-import { deleteSVGIcon, downSignSVGIcon, editSvgIcon } from "../assets";
-import { useAppDispatch } from "../hooks/utilityHooks";
-import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async";
-import { ToDoListPageData } from "../pages/Home";
+import React, { useState } from "react"
+import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion"
+import { deleteSVGIcon, downSignSVGIcon, editSvgIcon } from "../assets"
+import { useAppDispatch } from "../hooks/utilityHooks"
+import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
+import { ToDoListPageData } from "../pages/Home"
 
 export interface TodoItem {
-  id: string;
-  title: string;
-  description: string;
-  priority: "High" | "Medium" | "Low";
-  completed: boolean;
-  createdAt: string; // Assuming it's a string representing a date/time
-  dueDateTime: string; // Assuming it's a string representing a date/time
+  id: string
+  title: string
+  description: string
+  priority: "High" | "Medium" | "Low"
+  completed: boolean
+  createdAt: string // Assuming it's a string representing a date/time
+  dueDateTime: string // Assuming it's a string representing a date/time
 }
 
 interface Props {
-  todos: TodoItem[] | null;
-  deleteToDoHandler: (id: string) => void;
-  setEditTodoItems: any;
-  getAllUserTodoshandler: any;
-  pageData:ToDoListPageData
+  todos: TodoItem[] | null
+  deleteToDoHandler: (id: string) => void
+  setEditTodoItems: any
+  getAllUserTodoshandler: any
+  pageData: ToDoListPageData
 }
 
 const AccordionComponent: React.FC<Props> = ({
@@ -28,13 +28,13 @@ const AccordionComponent: React.FC<Props> = ({
   deleteToDoHandler,
   setEditTodoItems,
   getAllUserTodoshandler,
-  pageData
+  pageData,
 }) => {
-  const [activeAccordion, setActiveAccordion] = useState(null);
-  const dispatch = useAppDispatch();
+  const [activeAccordion, setActiveAccordion] = useState(null)
+  const dispatch = useAppDispatch()
   const toggleAccordion = (accordionId: any) => {
-    setActiveAccordion(accordionId === activeAccordion ? null : accordionId);
-  };
+    setActiveAccordion(accordionId === activeAccordion ? null : accordionId)
+  }
 
   const AccordionItem = ({ index, header, id, item, ...rest }: any) => (
     <Item
@@ -42,22 +42,22 @@ const AccordionComponent: React.FC<Props> = ({
       header={({ state: { isEnter } }) => (
         <>
           <div className="flex justify-between w-full items-center">
-            <div className="cursor-pointer" >
+            <div className="cursor-pointer">
               {/* <div className="flex"> */}
               <input
                 onClick={(e) => {
-                  e.stopPropagation();
+                  e.stopPropagation()
                   dispatch(
                     todosAsyncThunk.updateTodoAsyncThunk({
                       id,
-                      completed: item.completed?false:true,
+                      completed: item.completed ? false : true,
                     })
                   )
                     .unwrap()
                     .then(() => {
-                      getAllUserTodoshandler();
+                      getAllUserTodoshandler()
                     })
-                    .catch(() => {});
+                    .catch(() => {})
                 }}
                 type="checkbox"
                 className="shrink-0 mt-0.5 mr-2 p-2 cursor-pointer border-gray-200 rounded text-blue-600  "
@@ -69,7 +69,7 @@ const AccordionComponent: React.FC<Props> = ({
             <div className="flex justify-center items-center mr-4 gap-x-1">
               <span
                 onClick={(e) => {
-                  e.stopPropagation();
+                  e.stopPropagation()
                 }}
                 className="shadow-lg inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-[#3652AD] text-white"
               >
@@ -78,8 +78,8 @@ const AccordionComponent: React.FC<Props> = ({
 
               <img
                 onClick={(e) => {
-                  e.stopPropagation();
-                  deleteToDoHandler(id);
+                  e.stopPropagation()
+                  deleteToDoHandler(id)
                 }}
                 className="text-slate-50 transition-transform duration-200 ease-out"
                 src={deleteSVGIcon}
@@ -87,9 +87,9 @@ const AccordionComponent: React.FC<Props> = ({
               />
               <img
                 onClick={(e) => {
-                  e.stopPropagation();
-                  console.log("item", item);
-                  setEditTodoItems(item);
+                  e.stopPropagation()
+                  console.log("item", item)
+                  setEditTodoItems(item)
                   // Handle edit action here
                 }}
                 className="text-slate-50 transition-transform duration-200 ease-out"
@@ -110,9 +110,9 @@ const AccordionComponent: React.FC<Props> = ({
       className=""
       buttonProps={{
         className: ({ isEnter }) =>
-          `flex md:w-full shadow-2xl w-[96%] p-3 m-2 rounded-lg ${pageData.completed?"bg-[#597E52]":"bg-primary"} text-left ${
-            isEnter && ""
-          }`,
+          `flex md:w-full shadow-2xl w-[96%] p-3 m-2 rounded-lg ${
+            pageData.completed ? "bg-[#597E52]" : "bg-primary"
+          } text-left ${isEnter && ""}`,
       }}
       contentProps={{
         className:
@@ -120,7 +120,7 @@ const AccordionComponent: React.FC<Props> = ({
       }}
       panelProps={{ className: "p-5" }}
     />
-  );
+  )
 
   return (
     <div className="md:mx-80 my-4 text-slate-50 ">
@@ -142,7 +142,7 @@ const AccordionComponent: React.FC<Props> = ({
         )}
       </Accordion>
     </div>
-  );
-};
+  )
+}
 
-export default AccordionComponent;
+export default AccordionComponent

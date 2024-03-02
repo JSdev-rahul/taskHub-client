@@ -1,15 +1,15 @@
-import React, { memo } from "react";
-import OtpInput from "react-otp-input";
+import React, { memo } from "react"
+import OtpInput from "react-otp-input"
 
 interface otpComponentProps {
-  otp: string;
-  setTime: React.Dispatch<any>;
-  setOtp: React.Dispatch<string>;
-  time: number;
-  handleRegenerateOTP: () => void;
-  handleOtpVerification: () => void;
-  timer: any;
-  setIsOtpPage: React.Dispatch<boolean>;
+  otp: string
+  setTime: React.Dispatch<any>
+  setOtp: React.Dispatch<string>
+  time: number
+  handleRegenerateOTP: () => void
+  handleOtpVerification: () => void
+  timer: any
+  setIsOtpPage: React.Dispatch<boolean>
 }
 
 const OtpComponent: React.FC<otpComponentProps> = ({
@@ -25,7 +25,7 @@ const OtpComponent: React.FC<otpComponentProps> = ({
   const formattedTime = `${String(Math.floor(time / 60)).padStart(
     2,
     "0"
-  )}:${String(time % 60).padStart(2, "0")}`;
+  )}:${String(time % 60).padStart(2, "0")}`
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -73,9 +73,9 @@ const OtpComponent: React.FC<otpComponentProps> = ({
         </div>
         <button
           onClick={() => {
-            clearInterval(timer);
-            setTime((prev: any) => 180);
-            setIsOtpPage(false);
+            clearInterval(timer)
+            setTime((prev: any) => 180)
+            setIsOtpPage(false)
           }}
           className="underline text-xs text-blue-500 mt-2 cursor-pointer"
         >
@@ -83,7 +83,7 @@ const OtpComponent: React.FC<otpComponentProps> = ({
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default memo(OtpComponent);
+export default memo(OtpComponent)

@@ -1,18 +1,18 @@
-import React from "react";
+import React from "react"
 
 interface Priority {
-  id: number;
-  priority: string;
+  id: number
+  priority: string
 }
 
 interface SelectComponentProps {
-  priorities: Priority[];
-  title: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  id: string;
-  name: string;
-  error?: string;
-  value: string;
+  priorities: Priority[]
+  title: string
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  id: string
+  name: string
+  error?: string
+  value: string
 }
 
 const SelectComponent: React.FC<SelectComponentProps> = ({
@@ -45,12 +45,12 @@ const SelectComponent: React.FC<SelectComponentProps> = ({
             <option className="text-[10px] md:text-sm" value={item.priority}>
               {item.priority}
             </option>
-          );
+          )
         })}
       </select>
       {error ? <span className="text-xs text-error">*{error}</span> : null}
     </>
-  );
-};
+  )
+}
 
-export default SelectComponent;
+export default SelectComponent

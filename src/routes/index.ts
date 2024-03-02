@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { routingConfig } from "./routes";
-import { useEffect, useLayoutEffect } from "react";
-import { useAppSelector } from "../hooks/utilityHooks";
+import { useNavigate } from "react-router-dom"
+import { routingConfig } from "./routes"
+import { useEffect, useLayoutEffect } from "react"
+import { useAppSelector } from "../hooks/utilityHooks"
 
 interface ProtectedRouteProps {
-  token: string | null;
-  authorized: any;
-  children: JSX.Element;
+  token: string | null
+  authorized: any
+  children: JSX.Element
 }
 
 export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ({
@@ -14,17 +14,17 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ({
   authorized,
   children,
 }) => {
-  const { user } = useAppSelector((state) => state?.auth);
-  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state?.auth)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!token) {
-      navigate(routingConfig.login);
+      navigate(routingConfig.login)
     }
     if (!authorized.includes(user?.role)) {
-      navigate(routingConfig.login);
+      navigate(routingConfig.login)
     } else {
     }
-  }, [token, navigate]);
-  return token ? children : null;
-};
+  }, [token, navigate])
+  return token ? children : null
+}

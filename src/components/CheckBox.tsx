@@ -1,14 +1,14 @@
-import React from "react";
+import React from "react"
 
 interface CheckBoxProps {
-  label: string;
-  name: string;
-  type: string;
-  id: string;
-  value: string;
-  onChange: any;
-  checked: any;
-  error:string|null|undefined
+  label: string
+  name: string
+  type: string
+  id: string
+  value: string
+  onChange: any
+  checked: any
+  error: string | null | undefined
 }
 
 const CheckBox: React.FC<CheckBoxProps> = ({
@@ -19,11 +19,11 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   checked,
   label,
   name,
-  error
+  error,
 }) => {
   return (
     <>
-      <div className="cursor-pointer dark:text-white text-black" >
+      <div className="cursor-pointer dark:text-white text-black">
         <input
           type={type}
           id={id}
@@ -33,16 +33,12 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           checked={checked} // Check if gender value is 'female'
           onChange={onChange} // Handle input change
         />
-        <label
-          htmlFor={id}
-          className="text-sm  ms-2  cursor-pointer"
-        >
+        <label htmlFor={id} className="text-sm  ms-2  cursor-pointer">
           {label}
         </label>
-       
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CheckBox;
+export default CheckBox

@@ -3,24 +3,24 @@ export function objectToFormData(
   formData?: FormData,
   parentKey?: string
 ): FormData {
-  formData = formData || new FormData();
+  formData = formData || new FormData()
 
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
-      const value = obj[key];
-      const propName = parentKey ? `${parentKey}[${key}]` : key;
+      const value = obj[key]
+      const propName = parentKey ? `${parentKey}[${key}]` : key
 
       if (value instanceof Date) {
-        formData.append(propName, value.toISOString());
+        formData.append(propName, value.toISOString())
       } else if (typeof value === "object" && !(value instanceof File)) {
-        objectToFormData(value, formData, propName); // Recursive call for nested objects
+        objectToFormData(value, formData, propName) // Recursive call for nested objects
       } else {
-        formData.append(propName, value);
+        formData.append(propName, value)
       }
     }
   }
 
-  return formData;
+  return formData
 }
 
 //  funtion to check form data value , use this into on submit or anywhwre

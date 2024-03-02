@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"
 
 export const Toaster = Swal.mixin({
   toast: true,
@@ -7,7 +7,7 @@ export const Toaster = Swal.mixin({
   timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.addEventListener("mouseenter", Swal.stopTimer);
-    toast.addEventListener("mouseleave", Swal.resumeTimer);
+    toast.addEventListener("mouseenter", Swal.stopTimer)
+    toast.addEventListener("mouseleave", Swal.resumeTimer)
   },
-});
+})

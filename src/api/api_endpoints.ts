@@ -9,4 +9,4 @@ export const APIEndPoints = {
   googleLogin: "/login/google-auth",
   verifyOtp: "/login/verify-otp",
   regenerateOTP: "/login/regnrate-otp",
-};
+}

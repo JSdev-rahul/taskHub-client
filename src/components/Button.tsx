@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
 interface ButtonProps {
-  label: string;
-  disabled: boolean;
+  label: string
+  disabled: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({ label, disabled }) => {
@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({ label, disabled }) => {
 
       {label}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

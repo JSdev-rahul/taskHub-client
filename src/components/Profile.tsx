@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const UserProfileCard: React.FC<any> = ({ user }) => {
   return (
@@ -18,7 +18,7 @@ const UserProfileCard: React.FC<any> = ({ user }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserProfileCard;
+export default UserProfileCard

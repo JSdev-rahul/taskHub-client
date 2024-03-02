@@ -1,26 +1,21 @@
-import React, { useState } from "react";
-import { handleLogoutReducer } from "../redux/slices/auth.slice";
-import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks";
-import {
-  dummyProfile,
-  logoutSvgIcon,
-  moonSvgIcon,
-  sunSvgIcon,
-} from "../assets";
-import { routingConfig } from "../routes/routes";
-import { useNavigate } from "react-router-dom";
-import { toggleDarkMode } from "../redux/slices/uimode.slice";
+import React, { useState } from "react"
+import { handleLogoutReducer } from "../redux/slices/auth.slice"
+import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
+import { dummyProfile, logoutSvgIcon, moonSvgIcon, sunSvgIcon } from "../assets"
+import { routingConfig } from "../routes/routes"
+import { useNavigate } from "react-router-dom"
+import { toggleDarkMode } from "../redux/slices/uimode.slice"
 
 const Header = () => {
-  const { darkMode } = useAppSelector((state) => state.uimode);
+  const { darkMode } = useAppSelector((state) => state.uimode)
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const navigate = useNavigate()
   const toggleDropdown = () => {
-    setIsDropdownOpen((prevState: any) => !prevState);
-  };
-  const { user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+    setIsDropdownOpen((prevState: any) => !prevState)
+  }
+  const { user } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
   return (
     <header className="fixed top-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0 dark:bg-black">
       <nav
@@ -74,7 +69,6 @@ const Header = () => {
               <div className="hidden sm:flex flex-row gap-2 justify-center items-center">
                 <div>
                   <img
-                   
                     src={`http://localhost:8080/${user?.avtar
                       .split("\\")
                       .pop()}`}
@@ -105,7 +99,7 @@ const Header = () => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

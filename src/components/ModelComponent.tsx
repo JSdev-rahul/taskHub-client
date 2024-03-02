@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
+import React, { useState } from "react"
+import "react-responsive-modal/styles.css"
+import { Modal } from "react-responsive-modal"
 
 interface ModelComponentProps {
-  children: JSX.Element;
-  isModelOpen: boolean;
-  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEditTodoItems: any;
-  setIsCreateNewUser:React.Dispatch<React.SetStateAction<boolean>>
+  children: JSX.Element
+  isModelOpen: boolean
+  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setEditTodoItems: any
+  setIsCreateNewUser: React.Dispatch<React.SetStateAction<boolean>>
 }
 const ModelComponent: React.FC<ModelComponentProps> = ({
   children,
   setIsModelOpen,
   isModelOpen,
   setEditTodoItems,
-  setIsCreateNewUser
+  setIsCreateNewUser,
 }) => {
-  const onOpenModal = () => setIsModelOpen(true);
+  const onOpenModal = () => setIsModelOpen(true)
   const onCloseModal = () => {
     setIsCreateNewUser(false)
-    setEditTodoItems(null);
-    setIsModelOpen(false);
-   
-  };
+    setEditTodoItems(null)
+    setIsModelOpen(false)
+  }
   return (
     <>
-      <div >
+      <div>
         <button
           onClick={() => onOpenModal()}
           type="button"
@@ -35,25 +34,23 @@ const ModelComponent: React.FC<ModelComponentProps> = ({
           + Create ToDo
         </button>
 
-      
-      <div className="" >
-      <Modal open={isModelOpen} onClose={() => onCloseModal()} center>
-          <div
-            className="flex justify-center text-lg "
-            style={{
-              borderBottom: "1px solid gray",
-            }}
-          >
-            Create New Todo
-          </div>
+        <div className="">
+          <Modal open={isModelOpen} onClose={() => onCloseModal()} center>
+            <div
+              className="flex justify-center text-lg "
+              style={{
+                borderBottom: "1px solid gray",
+              }}
+            >
+              Create New Todo
+            </div>
 
-          {children}
-        </Modal>
+            {children}
+          </Modal>
+        </div>
       </div>
-      
-      </div> 
     </>
-  );
-};
+  )
+}
 
-export default ModelComponent;
+export default ModelComponent

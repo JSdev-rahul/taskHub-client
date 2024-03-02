@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 
 interface InputFieldProps {
-  label: string;
-  type: string;
-  id: string;
-  name: string;
-  onChange: any;
-  error: any;
-  value: string;
+  label: string
+  type: string
+  id: string
+  name: string
+  onChange: any
+  error: any
+  value: string
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -22,7 +22,10 @@ export const InputField: React.FC<InputFieldProps> = ({
   return (
     <>
       <div>
-        <label htmlFor="email" className="block text-sm mb-2 dark:text-white text-black">
+        <label
+          htmlFor="email"
+          className="block text-sm mb-2 dark:text-white text-black"
+        >
           {label}
         </label>
         <div className="relative">
@@ -38,5 +41,5 @@ export const InputField: React.FC<InputFieldProps> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}

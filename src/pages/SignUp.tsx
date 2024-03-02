@@ -1,41 +1,41 @@
-import React, { useRef, useState } from "react";
-import { InputField } from "../components/Input";
-import { useFormik } from "formik";
-import CheckBox from "../components/CheckBox";
-import { FilePond, registerPlugin } from "react-filepond";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import Lottie, { Options } from "react-lottie";
-import "filepond/dist/filepond.min.css";
-import { SignUpLottie } from "../assets";
-import { objectToFormData } from "../utils/formDataConvert";
-import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks";
-import { authsAsyncThunk } from "../redux/asyncThunk/auth.async";
-import Button from "../components/Button";
-import SelectComponent from "../components/SelectComponent";
-import signupValidationSchema from "../validator/signupValidationSchema";
-import { routingConfig } from "../routes/routes";
+import React, { useRef, useState } from "react"
+import { InputField } from "../components/Input"
+import { useFormik } from "formik"
+import CheckBox from "../components/CheckBox"
+import { FilePond, registerPlugin } from "react-filepond"
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type"
+import FilePondPluginImagePreview from "filepond-plugin-image-preview"
+import Lottie, { Options } from "react-lottie"
+import "filepond/dist/filepond.min.css"
+import { SignUpLottie } from "../assets"
+import { objectToFormData } from "../utils/formDataConvert"
+import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
+import { authsAsyncThunk } from "../redux/asyncThunk/auth.async"
+import Button from "../components/Button"
+import SelectComponent from "../components/SelectComponent"
+import signupValidationSchema from "../validator/signupValidationSchema"
+import { routingConfig } from "../routes/routes"
 registerPlugin(
   FilePondPluginFileValidateType
   //  FilePondPluginImagePreview
-);
+)
 
 interface SignUpProps {
-  isCreateNewUser?: boolean;
+  isCreateNewUser?: boolean
 }
 interface Roles {
-  id: number;
-  priority: string;
+  id: number
+  priority: string
 }
 const roles: Roles[] = [
   { id: 1, priority: "user" },
   { id: 2, priority: "admin" },
-];
+]
 const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
-  const [files, setFiles] = useState<any>([]); // Specify type as FilePondFile
-  const { user } = useAppSelector((state) => state.auth);
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const [files, setFiles] = useState<any>([]) // Specify type as FilePondFile
+  const { user } = useAppSelector((state) => state.auth)
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
 
   const defaultOptions: Options = {
     loop: true,
@@ -44,7 +44,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
-  };
+  }
 
   const [initialValues, setInitialValues] = useState({
     name: "",
@@ -54,7 +54,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
     avtar: "",
     role: "user",
     createdBy: isCreateNewUser ? user?.id : "user",
-  });
+  })
 
   const formik = useFormik({
     initialValues,
@@ -63,26 +63,26 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
     validationSchema: signupValidationSchema,
     validateOnChange: true,
     onSubmit: (values) => {
-      setIsDisabled(true);
-      const formData = objectToFormData(values);
-      const entries = formData.entries();
+      setIsDisabled(true)
+      const formData = objectToFormData(values)
+      const entries = formData.entries()
       for (let entry = entries.next(); !entry.done; entry = entries.next()) {
-        const [key, value] = entry.value;
-        console.log(key, value);
+        const [key, value] = entry.value
+        console.log(key, value)
       }
 
       dispatch(authsAsyncThunk.signUpAsyncThunk(formData))
         .unwrap()
         .then(() => {
-          setIsDisabled(false);
-          formik.resetForm();
-          setFiles([]);
+          setIsDisabled(false)
+          formik.resetForm()
+          setFiles([])
         })
         .catch(() => {
-          setIsDisabled(false);
-        });
+          setIsDisabled(false)
+        })
     },
-  });
+  })
 
   return (
     <div
@@ -204,12 +204,12 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
                     files={files}
                     onupdatefiles={(fileItems) => {
                       if (fileItems && fileItems.length > 0) {
-                        setFiles(fileItems[0].file);
-                        formik.setFieldValue("avtar", fileItems[0].file);
+                        setFiles(fileItems[0].file)
+                        formik.setFieldValue("avtar", fileItems[0].file)
                       } else {
-                        setFiles([]);
+                        setFiles([])
                       }
-                      setFiles(fileItems);
+                      setFiles(fileItems)
                     }}
                     // allowImagePreview={true}
                     allowMultiple={false}
@@ -244,7 +244,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

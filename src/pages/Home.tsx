@@ -1,49 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async";
-import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks";
-import Tabs from "../components/Tabs";
-import { debounce } from "lodash";
-import AccordionComponent from "../components/Accordion";
-import ModelComponent from "../components/ModelComponent";
-import "react-datetime-picker/dist/DateTimePicker.css";
-import "react-calendar/dist/Calendar.css";
-import "react-clock/dist/Clock.css";
-import CreateToDoForm from "./CreateToDoForm";
-import { SearchSvgIcon } from "../assets";
-import SelectComponent from "../components/SelectComponent";
-import SignUp from "./SignUp";
-import ResponsivePagination from "react-responsive-pagination";
-import "react-responsive-pagination/themes/classic.css";
-const tabs: string[] = ["Pending", "Completed"];
+import React, { useEffect, useState } from "react"
+import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
+import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
+import Tabs from "../components/Tabs"
+import { debounce } from "lodash"
+import AccordionComponent from "../components/Accordion"
+import ModelComponent from "../components/ModelComponent"
+import "react-datetime-picker/dist/DateTimePicker.css"
+import "react-calendar/dist/Calendar.css"
+import "react-clock/dist/Clock.css"
+import CreateToDoForm from "./CreateToDoForm"
+import { SearchSvgIcon } from "../assets"
+import SelectComponent from "../components/SelectComponent"
+import SignUp from "./SignUp"
+import ResponsivePagination from "react-responsive-pagination"
+import "react-responsive-pagination/themes/classic.css"
+const tabs: string[] = ["Pending", "Completed"]
 export interface ToDoListPageData {
-  page: number;
-  limit: number;
-  q: string;
-  priority: string;
-  completed: boolean;
-  id: string;
+  page: number
+  limit: number
+  q: string
+  priority: string
+  completed: boolean
+  id: string
 }
 
 interface Priority {
-  id: number;
-  priority: string;
+  id: number
+  priority: string
 }
 const priorities: Priority[] = [
   { id: 1, priority: "All" },
   { id: 2, priority: "Low" },
   { id: 3, priority: "Medium" },
   { id: 4, priority: "High" },
-];
+]
 const Home = () => {
-
-  const [isCreateNewUser, setIsCreateNewUser] = useState<boolean>(false);
-  const [editToDoItems, setEditTodoItems] = useState<string | null>(null);
-  const { allToDos, count } = useAppSelector((state) => state.todos);
-  const { user } = useAppSelector((state) => state.auth);
-  const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<number>(0);
-  const dispatch = useAppDispatch();
-  const [searchText, setSearchText] = React.useState<string>("");
+  const [isCreateNewUser, setIsCreateNewUser] = useState<boolean>(false)
+  const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
+  const { allToDos, count } = useAppSelector((state) => state.todos)
+  const { user } = useAppSelector((state) => state.auth)
+  const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
+  const [activeTab, setActiveTab] = useState<number>(0)
+  const dispatch = useAppDispatch()
+  const [searchText, setSearchText] = React.useState<string>("")
   const [pageData, setPageData] = useState<ToDoListPageData>({
     page: 1,
     limit: 5,
@@ -51,42 +50,42 @@ const Home = () => {
     priority: "",
     completed: false,
     id: user?.id || "",
-  });
+  })
 
   const getAllUserTodoshandler = () => {
-    dispatch(todosAsyncThunk.getUserAllTodos({ ...pageData }));
-  };
+    dispatch(todosAsyncThunk.getUserAllTodos({ ...pageData }))
+  }
   const deleteToDoHandler = (id: string) => {
     dispatch(todosAsyncThunk.deleteTodoAsyncThunk(id))
       .unwrap()
       .then(() => {
-        getAllUserTodoshandler();
+        getAllUserTodoshandler()
       })
-      .catch(() => {});
-  };
+      .catch(() => {})
+  }
 
   useEffect(() => {
-    getAllUserTodoshandler();
-  }, [pageData]);
+    getAllUserTodoshandler()
+  }, [pageData])
 
   useEffect(() => {
     if (editToDoItems) {
-      setIsModelOpen(true);
+      setIsModelOpen(true)
     }
-  }, [editToDoItems]);
+  }, [editToDoItems])
 
   useEffect(() => {
     const debouncedSearch = debounce((searchQuery) => {
-      setPageData({ ...pageData, q: searchQuery });
+      setPageData({ ...pageData, q: searchQuery })
       // Perform your search logic here, e.g., fetching search results
-    }, 1000);
+    }, 1000)
 
     // Call the debounced function with the updated query whenever it changes
-    debouncedSearch(searchText);
+    debouncedSearch(searchText)
 
     // Cleanup function to cancel debounce on component unmount
-    return () => debouncedSearch.cancel();
-  }, [searchText]);
+    return () => debouncedSearch.cancel()
+  }, [searchText])
 
   return (
     <>
@@ -168,8 +167,8 @@ const Home = () => {
               <div>
                 <button
                   onClick={() => {
-                    setIsCreateNewUser(true);
-                    setIsModelOpen(true);
+                    setIsCreateNewUser(true)
+                    setIsModelOpen(true)
                   }}
                   type="button"
                   className="bg-primary shadow-2xl rounded-lg text-sm p-2 mt-7 text-slate-50"
@@ -206,11 +205,11 @@ const Home = () => {
         </div>
         <ResponsivePagination
           current={pageData?.page}
-          total={Math.ceil(count/pageData.limit)}
+          total={Math.ceil(count / pageData.limit)}
           onPageChange={(count) => setPageData({ ...pageData, page: count })}
         />
       </div>
     </>
-  );
-};
-export default Home;
+  )
+}
+export default Home

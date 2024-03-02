@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react"
 
 export const minimalLayout = () => {
-  return (
-    <div>minimalLayout</div>
-  )
+  return <div>minimalLayout</div>
 }
