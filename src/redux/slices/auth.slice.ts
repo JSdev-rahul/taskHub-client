@@ -15,12 +15,14 @@ export interface User {
 interface AuthState {
   status: "idle" | "pending" | "fulfilled" | "rejected"
   user: User | null
-  token: string | null
+  access_token: string | null
+  refresh_token: string | null
 }
 
 const initialState: AuthState = {
   status: "idle",
-  token: null,
+  access_token: null,
+  refresh_token: null,
   user: null,
 }
 
@@ -29,11 +31,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     handleLogoutReducer: (state) => {
-      googleLogout()
-      state.token = null
+      state.access_token = null
+      state.refresh_token = null
       state.user = null
       state.status = "idle"
       localStorage.clear()
+      googleLogout()
     },
   },
   extraReducers: (builder) => {
@@ -45,7 +48,8 @@ const authSlice = createSlice({
       (state, action: PayloadAction<{ data: AuthState }>) => {
         state.status = "fulfilled"
         state.user = action.payload.data.user // Access user property from payload
-        state.token = action.payload.data.token
+        state.access_token = action.payload.data.access_token
+        state.refresh_token = action.payload.data.refresh_token
       }
     )
     builder.addCase(authsAsyncThunk.loginAsyncThunk.rejected, (state) => {
@@ -60,7 +64,8 @@ const authSlice = createSlice({
       (state, action: PayloadAction<{ data: AuthState }>) => {
         state.status = "fulfilled"
         state.user = action.payload.data.user // Access user property from payload
-        state.token = action.payload.data.token
+        state.access_token = action.payload.data.access_token
+        state.refresh_token = action.payload.data.refresh_token
       }
     )
     builder.addCase(authsAsyncThunk.googleAuthAsyncThunk.rejected, (state) => {

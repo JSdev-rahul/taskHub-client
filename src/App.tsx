@@ -1,19 +1,17 @@
 import { useAppSelector } from "./hooks/utilityHooks"
 import AppRouting from "./routes/AppRouting"
-import useAxiosRequestInterceptor from "./api/axiosRequestInterceptor"
 import useAxiosResponseInterceptor from "./api/axiosResponseInterceptor"
+import useAxiosRequestInterceptor from "./api/axiosRequestInterceptor"
 
 function App() {
   const { darkMode } = useAppSelector((state) => state.uimode)
-  const configValue = process.env.REACT_APP_API_BASE_URL
+  const { access_token } = useAppSelector((state) => state.auth)
 
-  useAxiosRequestInterceptor()
+  useAxiosRequestInterceptor(access_token)
   useAxiosResponseInterceptor()
-  const { token } = useAppSelector((state) => state.auth)
-
   return (
     <div className={darkMode ? "dark bg-slate-500 h-screen" : "h-screen"}>
-      <AppRouting token={token} />
+      <AppRouting access_token={access_token} />
     </div>
   )
 }

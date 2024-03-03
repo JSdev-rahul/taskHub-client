@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom"
 import Loading from "../components/Loading"
 import { ProtectedRoute } from "./index"
 import { routingConfig } from "./routes"
-import { useAppSelector } from "../hooks/utilityHooks"
 import Profile from "../pages/Profile"
 
 const MainLayout = lazy(() => import("../layout/mainLayout"))
@@ -13,8 +12,7 @@ const SignInPage = lazy(() => import("../pages/SignIn"))
 const SignUpPage = lazy(() => import("../pages/SignUp"))
 const HomePage = lazy(() => import("../pages/Home"))
 
-const AppRouting = ({ token }: { token: string | null }) => {
-  const { user } = useAppSelector((state) => state.auth)
+const AppRouting = ({ access_token }: { access_token: string | null }) => {
   const userAuth = ["user", "admin"]
   const adminAuth = ["admin"]
   return (
@@ -26,7 +24,10 @@ const AppRouting = ({ token }: { token: string | null }) => {
           <Route
             path={routingConfig.home}
             element={
-              <ProtectedRoute token={token} authorized={userAuth}>
+              <ProtectedRoute
+                // access_token={access_token}
+                authorized={userAuth}
+              >
                 <HomePage />
               </ProtectedRoute>
             }
@@ -35,7 +36,10 @@ const AppRouting = ({ token }: { token: string | null }) => {
           <Route
             path={routingConfig.profile}
             element={
-              <ProtectedRoute token={token} authorized={adminAuth}>
+              <ProtectedRoute
+                // access_token={access_token}
+                authorized={adminAuth}
+              >
                 <Profile />
               </ProtectedRoute>
             }
