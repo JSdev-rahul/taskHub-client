@@ -7,7 +7,7 @@ const signupValidationSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
-  avtar: Yup.string().required("Avatar is required"),
+  avatar: Yup.string().required("Avatar is required"),
 })
 
 export default signupValidationSchema

@@ -28,7 +28,6 @@ export interface TodoFormData {
   description?: string
   priority?: "Low" | "Medium" | "High"
   completed: boolean
-  user?: string | undefined
   dueDateTime?: Date
   id?: string
 }
@@ -48,7 +47,6 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
     description: "",
     priority: "Low",
     completed: false,
-    user: user?.id,
     dueDateTime: new Date(),
   })
 

@@ -7,7 +7,7 @@ export interface User {
   email: string
   id: string
   gender: string
-  avtar: string
+  avatar: string
   role?: string | null
   createdBy?: string | null
 }

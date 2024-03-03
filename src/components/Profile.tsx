@@ -6,7 +6,7 @@ const UserProfileCard: React.FC<any> = ({ user }) => {
       <div className="bg-white shadow-md rounded-lg overflow-hidden max-w-sm ">
         <div className="w-full flex justify-center">
           <img
-            src={`http://localhost:8080/${user?.avtar.split("\\").pop()}`}
+            src={user?.avatar}
             alt="User Avatar"
             className="w-48 h-48 object-fill object-center rounded-full justify-center "
           />

@@ -51,7 +51,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
     gender: "",
     email: "",
     password: "",
-    avtar: "",
+    avatar: "",
     role: "user",
     createdBy: isCreateNewUser ? user?.id : "user",
   })
@@ -205,7 +205,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
                     onupdatefiles={(fileItems) => {
                       if (fileItems && fileItems.length > 0) {
                         setFiles(fileItems[0].file)
-                        formik.setFieldValue("avtar", fileItems[0].file)
+                        formik.setFieldValue("avatar", fileItems[0].file)
                       } else {
                         setFiles([])
                       }
@@ -214,14 +214,14 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
                     // allowImagePreview={true}
                     allowMultiple={false}
                     maxFiles={1}
-                    name="avtar"
+                    name="avatar"
                     labelIdle="Browse or Drag and Drop your Avatar"
                   />
 
-                  {formik.errors.avtar ? (
+                  {formik.errors.avatar ? (
                     <div className="mt-[-18px] mb-[10px]">
                       <span className="text-xs text-error">
-                        *{formik.errors.avtar}
+                        *{formik.errors.avatar}
                       </span>
                     </div>
                   ) : null}
