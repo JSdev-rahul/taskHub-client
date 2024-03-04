@@ -71,6 +71,27 @@ const authSlice = createSlice({
     builder.addCase(authsAsyncThunk.googleAuthAsyncThunk.rejected, (state) => {
       state.status = "rejected"
     })
+
+    builder.addCase(
+      authsAsyncThunk.genrateNewTokenAsyncThunk.pending,
+      (state) => {
+        state.status = "pending"
+      }
+    )
+    builder.addCase(
+      authsAsyncThunk.genrateNewTokenAsyncThunk.fulfilled,
+      (state, action: PayloadAction<{ data: AuthState }>) => {
+        state.status = "fulfilled"
+        state.access_token = action.payload.data.access_token
+        state.refresh_token = action.payload.data.refresh_token
+      }
+    )
+    builder.addCase(
+      authsAsyncThunk.genrateNewTokenAsyncThunk.rejected,
+      (state) => {
+        state.status = "rejected"
+      }
+    )
   },
 })
 

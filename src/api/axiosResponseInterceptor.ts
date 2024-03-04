@@ -2,10 +2,12 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { routingConfig } from "../routes/routes"
 import { ToastMessage } from "../components/TosterMessage"
-import { useAppDispatch } from "../hooks/utilityHooks"
+import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
 import { handleLogoutReducer } from "../redux/slices/auth.slice"
+import { authsAsyncThunk } from "../redux/asyncThunk/auth.async"
 
 const useAxiosResponseInterceptor = () => {
+  const { refresh_token } = useAppSelector((state) => state?.auth)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -24,9 +26,20 @@ const useAxiosResponseInterceptor = () => {
         const statusCode = error.response.status
         const message = error.response?.data?.message
         if (statusCode === 401) {
-          dispatch(handleLogoutReducer())
+          dispatch(
+            authsAsyncThunk.genrateNewTokenAsyncThunk({
+              refreshToken: refresh_token,
+            })
+          )
+            .unwrap()
+            .then(() => {})
+            .catch((err: any) => {
+              dispatch(handleLogoutReducer())
+              navigate(routingConfig.login)
+            })
+          //
           // Unauthorized: Redirect to login page or handle authentication logic
-          navigate(routingConfig.login)
+          //
         } else {
           // Other error status codes: Display generic error message
           ToastMessage(

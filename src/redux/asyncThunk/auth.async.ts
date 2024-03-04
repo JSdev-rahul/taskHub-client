@@ -5,6 +5,9 @@ export interface LoginFormValues {
   email: string
   password: string
 }
+export interface RefreshTokenPayload {
+  refreshToken: string | null
+}
 class AuthAsyncThunk {
   private authService: AuthService
 
@@ -61,6 +64,17 @@ class AuthAsyncThunk {
     async (payload: any, { rejectWithValue }) => {
       try {
         const response = await this.authService.googleAuthService(payload)
+        return response
+      } catch (err) {
+        return rejectWithValue(err)
+      }
+    }
+  )
+  genrateNewTokenAsyncThunk = createAsyncThunk(
+    "genrateNewTokenAsyncThunk",
+    async (payload: RefreshTokenPayload, { rejectWithValue }) => {
+      try {
+        const response = await this.authService.genrateNewTokenService(payload)
         return response
       } catch (err) {
         return rejectWithValue(err)
