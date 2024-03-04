@@ -21,6 +21,7 @@ const Tabs: React.FunctionComponent<TabsProps> = ({
     // Create a new object representing the updated page data based on the clicked tab
     const updatedPageData: ToDoListPageData = {
       ...pageData,
+      page: 1,
       completed: item === "Pending" ? false : true,
     }
     setPageData(updatedPageData)
