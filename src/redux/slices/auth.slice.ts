@@ -35,7 +35,7 @@ const authSlice = createSlice({
       state.refresh_token = null
       state.user = null
       state.status = "idle"
-      localStorage.clear()
+      localStorage.removeItem("persist:root")
       googleLogout()
     },
   },

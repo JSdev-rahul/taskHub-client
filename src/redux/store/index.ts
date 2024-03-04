@@ -18,7 +18,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
       // serializableCheck: {
-      // ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       // },
     }),
   // middleware: () => [thunk],
