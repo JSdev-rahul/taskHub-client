@@ -40,11 +40,11 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(authsAsyncThunk.loginAsyncThunk.pending, (state) => {
+    builder.addCase(authsAsyncThunk.verifyOtpAsyncThunk.pending, (state) => {
       state.status = "pending"
     })
     builder.addCase(
-      authsAsyncThunk.loginAsyncThunk.fulfilled,
+      authsAsyncThunk.verifyOtpAsyncThunk.fulfilled,
       (state, action: PayloadAction<{ data: AuthState }>) => {
         state.status = "fulfilled"
         state.user = action.payload.data.user // Access user property from payload
@@ -52,7 +52,7 @@ const authSlice = createSlice({
         state.refresh_token = action.payload.data.refresh_token
       }
     )
-    builder.addCase(authsAsyncThunk.loginAsyncThunk.rejected, (state) => {
+    builder.addCase(authsAsyncThunk.verifyOtpAsyncThunk.rejected, (state) => {
       state.status = "rejected"
     })
 
