@@ -2,6 +2,7 @@
   "name": "taskhub",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001", 
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@react-oauth/google": "^0.12.1",
@@ -52,6 +53,7 @@
     "yup": "^1.3.3"
   },
   "scripts": {
+    "proxy": "http://localhost:3001",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

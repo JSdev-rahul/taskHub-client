@@ -68,7 +68,6 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
       const entries = formData.entries()
       for (let entry = entries.next(); !entry.done; entry = entries.next()) {
         const [key, value] = entry.value
-        console.log(key, value)
       }
 
       dispatch(authsAsyncThunk.signUpAsyncThunk(formData))

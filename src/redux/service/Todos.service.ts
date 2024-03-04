@@ -1,5 +1,3 @@
-// import API from '../../utils/API'
-
 import { APIEndPoints } from "../../api/api_endpoints"
 import { TodoFormData } from "../../pages/CreateToDoForm"
 import { ToDoListPageData } from "../../pages/Home"

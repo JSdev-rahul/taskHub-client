@@ -88,7 +88,7 @@ const AccordionComponent: React.FC<Props> = ({
               <img
                 onClick={(e) => {
                   e.stopPropagation()
-                  console.log("item", item)
+
                   setEditTodoItems(item)
                   // Handle edit action here
                 }}

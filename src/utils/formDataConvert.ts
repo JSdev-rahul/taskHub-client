@@ -30,5 +30,5 @@ export function objectToFormData(
 //     // Iterate over the FormData entries using a traditional for loop
 //     for (let entry = entries.next(); !entry.done; entry = entries.next()) {
 //       const [key, value] = entry.value;
-//       console.log(key, value);
+//
 //     }

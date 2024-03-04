@@ -14,6 +14,7 @@ import SelectComponent from "../components/SelectComponent"
 import SignUp from "./SignUp"
 import ResponsivePagination from "react-responsive-pagination"
 import "react-responsive-pagination/themes/classic.css"
+
 const tabs: string[] = ["Pending", "Completed"]
 export interface ToDoListPageData {
   page: number

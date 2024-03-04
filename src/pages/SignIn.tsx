@@ -64,9 +64,7 @@ const SignIn = () => {
       .then((res: any) => {
         navigate(routingConfig.home)
       })
-      .catch((err: any) => {
-        console.log(err)
-      })
+      .catch((err: any) => {})
   }
 
   const handleRegenerateOTP = () => {
@@ -76,9 +74,7 @@ const SignIn = () => {
     dispatch(authsAsyncThunk.regenerateOTPAsyncThunk({ email }))
       .unwrap()
       .then((res: any) => {})
-      .catch((err: any) => {
-        console.log(err)
-      })
+      .catch((err: any) => {})
   }
 
   const handleTimer = () => {
@@ -105,9 +101,7 @@ const SignIn = () => {
             navigate(routingConfig.home)
           }
         })
-        .catch((err: any) => {
-          console.log("err", err)
-        })
+        .catch((err: any) => {})
     }
   }
 
@@ -138,9 +132,7 @@ const SignIn = () => {
                     onSuccess={(credentialResponse) =>
                       handleLoginSuccess(credentialResponse)
                     }
-                    onError={() => {
-                      console.log("Login Failed")
-                    }}
+                    onError={() => {}}
                     useOneTap={true}
                   />
                 </GoogleOAuthProvider>
