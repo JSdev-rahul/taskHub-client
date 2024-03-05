@@ -29,29 +29,35 @@ const Tabs: React.FunctionComponent<TabsProps> = ({
   return (
     <>
       <div className="flex justify-center mt-1">
-        {tabsHeader?.map((item: string, index: number) => {
-          return (
-            <div
-              className={`border-b  ${activeTab === index ? "border-blue-700" : "border-gray-200"} border-gray-200 px-4 `}
-            >
-              <nav className="flex space-x-2" aria-label="Tabs" role="tablist">
-                <button
-                  type="button"
-                  className={`hs-tab-active:font-semibold py-4 px-1 inline-flex items-center gap-x-2   text-sm whitespace-nowrap ${
-                    activeTab === index
-                      ? "text-blue-700 text-lg text-opacity-100 font-bold"
-                      : " dark:text-slate-50 text-slate-950"
-                  }`}
-                  onClick={() => handleTabClick(index, item)}
-                  id="basic-tabs-item-1"
-                  role="tab"
+        {tabsHeader?.map(
+          (item: { lable: string; value: string }, index: number) => {
+            return (
+              <div
+                className={`border-b  ${activeTab === index ? "border-blue-700" : "border-gray-200"} border-gray-200 px-4 `}
+              >
+                <nav
+                  className="flex space-x-2"
+                  aria-label="Tabs"
+                  role="tablist"
                 >
-                  {item}
-                </button>
-              </nav>
-            </div>
-          )
-        })}
+                  <button
+                    type="button"
+                    className={`hs-tab-active:font-semibold py-4 px-1 inline-flex items-center gap-x-2   text-sm whitespace-nowrap ${
+                      activeTab === index
+                        ? "text-blue-700 text-lg text-opacity-100 font-bold"
+                        : " dark:text-slate-50 text-slate-950"
+                    }`}
+                    onClick={() => handleTabClick(index, item.value)}
+                    id="basic-tabs-item-1"
+                    role="tab"
+                  >
+                    {item.value}
+                  </button>
+                </nav>
+              </div>
+            )
+          }
+        )}
       </div>
     </>
   )

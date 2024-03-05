@@ -67,7 +67,7 @@ const Users = () => {
   const closeModel = () => {
     setIsModelOpen(false)
   }
-  const title = "Regisater New user"
+  const ModelTitle: string = "Regisater New user"
   return (
     <>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto mt-5">
@@ -82,7 +82,7 @@ const Users = () => {
                         isModelOpen,
                         setIsModelOpen,
                         closeModel,
-                        title,
+                        ModelTitle,
                       }}
                     >
                       <SignUp isCreateNewUser={true} />

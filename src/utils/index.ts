@@ -25,3 +25,30 @@ export const adminMenuItem: MenuItem[] = [
   { pageName: PageName.USERS, route: routingConfig.users },
   { pageName: PageName.PROFILE, route: routingConfig.profile },
 ]
+
+enum PRIORITY_LEVEl {
+  ALL = "All",
+  LOW = "Low",
+  MEDINUm = "Medium",
+  HIGH = "High",
+}
+export const PRIORITIES: { id: number; priority: string }[] = [
+  { id: 1, priority: PRIORITY_LEVEl.LOW },
+  { id: 2, priority: PRIORITY_LEVEl.MEDINUm },
+  { id: 3, priority: PRIORITY_LEVEl.HIGH },
+]
+
+export const FILTER_PRIORITY: { id: number; priority: string }[] = [
+  { id: 1, priority: PRIORITY_LEVEl.ALL },
+  ...PRIORITIES,
+]
+
+enum TabsName {
+  PENDING = "Pending",
+  COMPLETED = "Completed",
+}
+
+export const TABS: { label: string; value: TabsName }[] = [
+  { label: TabsName.PENDING, value: TabsName.PENDING },
+  { label: TabsName.COMPLETED, value: TabsName.COMPLETED },
+]

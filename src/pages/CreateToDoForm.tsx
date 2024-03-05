@@ -4,9 +4,10 @@ import DateTimePicker from "react-datetime-picker"
 import { InputField } from "../components/Input"
 import { useFormik } from "formik"
 import Button from "../components/Button"
-import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
+import { useAppDispatch } from "../hooks/utilityHooks"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
 import { createToDoValidationSchema } from "../validator/createToDoValidationSchema"
+import { PRIORITIES } from "../utils"
 
 interface CreateToDoFormProps {
   setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,15 +15,7 @@ interface CreateToDoFormProps {
   setEditTodoItems: any
   getAllUserTodoshandler: () => void
 }
-interface Priority {
-  id: number
-  priority: string
-}
-export const priorities: Priority[] = [
-  { id: 1, priority: "Low" },
-  { id: 2, priority: "Medium" },
-  { id: 3, priority: "High" },
-]
+
 export interface TodoFormData {
   title?: string
   description?: string
@@ -38,7 +31,6 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
   setEditTodoItems,
   getAllUserTodoshandler,
 }) => {
-  const { user } = useAppSelector((state) => state.auth)
   const dispatch = useAppDispatch()
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
@@ -124,7 +116,7 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
             name="priority"
             onChange={formik.handleChange}
             title="Select Priority"
-            priorities={priorities}
+            priorities={PRIORITIES}
           />
         </div>
         <div className="mt-2">

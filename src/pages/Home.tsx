@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
 import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
 import Tabs from "../components/Tabs"
-import { debounce } from "lodash"
 import AccordionComponent from "../components/Accordion"
 import ModelComponent from "../components/ModelComponent"
 import "react-datetime-picker/dist/DateTimePicker.css"
 import "react-calendar/dist/Calendar.css"
 import "react-clock/dist/Clock.css"
 import CreateToDoForm from "./CreateToDoForm"
-import { SearchSvgIcon } from "../assets"
 import SelectComponent from "../components/SelectComponent"
-import SignUp from "./SignUp"
 import ResponsivePagination from "react-responsive-pagination"
 import "react-responsive-pagination/themes/classic.css"
 import SearchBoxComponent from "../components/SearchBox"
+import { FILTER_PRIORITY, TABS } from "../utils"
 
-const tabs: string[] = ["Pending", "Completed"]
 export interface ToDoListPageData {
   page: number
   limit: number
@@ -26,25 +23,13 @@ export interface ToDoListPageData {
   id: string
 }
 
-interface Priority {
-  id: number
-  priority: string
-}
-const priorities: Priority[] = [
-  { id: 1, priority: "All" },
-  { id: 2, priority: "Low" },
-  { id: 3, priority: "Medium" },
-  { id: 4, priority: "High" },
-]
 const Home = () => {
-  const [isCreateNewUser, setIsCreateNewUser] = useState<boolean>(false)
   const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
   const { allToDos, count } = useAppSelector((state) => state.todos)
   const { user } = useAppSelector((state) => state.auth)
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<number>(0)
   const dispatch = useAppDispatch()
-  const [searchText, setSearchText] = React.useState<string>("")
   const [pageData, setPageData] = useState<ToDoListPageData>({
     page: 1,
     limit: 5,
@@ -76,25 +61,11 @@ const Home = () => {
     }
   }, [editToDoItems])
 
-  useEffect(() => {
-    const debouncedSearch = debounce((searchQuery) => {
-      setPageData({ ...pageData, q: searchQuery })
-      // Perform your search logic here, e.g., fetching search results
-    }, 1000)
-
-    // Call the debounced function with the updated query whenever it changes
-    debouncedSearch(searchText)
-
-    // Cleanup function to cancel debounce on component unmount
-    return () => debouncedSearch.cancel()
-  }, [searchText])
-
   const closeModel = () => {
-    setIsCreateNewUser(false)
     setEditTodoItems(null)
     setIsModelOpen(false)
   }
-  const title = "Create New Todo"
+  const ModelTitle: string = "Create New Todo"
   return (
     <>
       <ModelComponent
@@ -102,7 +73,7 @@ const Home = () => {
           isModelOpen,
           setIsModelOpen,
           closeModel,
-          title,
+          ModelTitle,
         }}
       >
         <CreateToDoForm
@@ -127,7 +98,7 @@ const Home = () => {
                   })
                 }
                 title="Select Priority "
-                priorities={priorities}
+                priorities={FILTER_PRIORITY}
               />
             </div>
             <div className="w-[50%]">
@@ -154,7 +125,7 @@ const Home = () => {
       </div>
 
       <Tabs
-        tabsHeader={tabs}
+        tabsHeader={TABS}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setPageData={setPageData}

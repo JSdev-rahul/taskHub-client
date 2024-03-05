@@ -6,11 +6,11 @@ interface ModelComponentProps {
   children: JSX.Element
   isModelOpen: boolean
   closeModel: () => void
-  title: string
+  ModelTitle: string
 }
 const ModelComponent: React.FC<ModelComponentProps> = ({
   children,
-  title,
+  ModelTitle,
   isModelOpen,
   closeModel,
 }) => {
@@ -28,7 +28,7 @@ const ModelComponent: React.FC<ModelComponentProps> = ({
                 borderBottom: "1px solid gray",
               }}
             >
-              {title}
+              {ModelTitle}
             </div>
 
             {children}
