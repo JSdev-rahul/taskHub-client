@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom"
-import { routingConfig } from "./routes"
-import { useEffect, useLayoutEffect } from "react"
+import { useEffect } from "react"
 import { useAppSelector } from "../hooks/utilityHooks"
+import { routingConfig } from "./routes"
 
 interface ProtectedRouteProps {
-  // access_token: string | null
   authorized: any
   children: JSX.Element
 }
 
 export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ({
-  // access_token,
   authorized,
   children,
 }) => {

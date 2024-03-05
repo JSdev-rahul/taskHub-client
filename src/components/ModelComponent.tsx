@@ -5,35 +5,21 @@ import { Modal } from "react-responsive-modal"
 interface ModelComponentProps {
   children: JSX.Element
   isModelOpen: boolean
-  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setEditTodoItems: any
-  setIsCreateNewUser: React.Dispatch<React.SetStateAction<boolean>>
+  closeModel: () => void
+  title: string
 }
 const ModelComponent: React.FC<ModelComponentProps> = ({
   children,
-  setIsModelOpen,
+  title,
   isModelOpen,
-  setEditTodoItems,
-  setIsCreateNewUser,
+  closeModel,
 }) => {
-  const onOpenModal = () => setIsModelOpen(true)
   const onCloseModal = () => {
-    setIsCreateNewUser(false)
-    setEditTodoItems(null)
-    setIsModelOpen(false)
+    closeModel()
   }
   return (
     <>
       <div>
-        <button
-          onClick={() => onOpenModal()}
-          type="button"
-          className="bg-primary shadow-2xl rounded-lg text-sm p-2 text-slate-50"
-          data-hs-overlay="#hs-slide-down-animation-modal"
-        >
-          + Create ToDo
-        </button>
-
         <div className="">
           <Modal open={isModelOpen} onClose={() => onCloseModal()} center>
             <div
@@ -42,7 +28,7 @@ const ModelComponent: React.FC<ModelComponentProps> = ({
                 borderBottom: "1px solid gray",
               }}
             >
-              Create New Todo
+              {title}
             </div>
 
             {children}

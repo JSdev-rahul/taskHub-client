@@ -3,4 +3,5 @@ export const routingConfig = {
   login: "/login",
   signup: "/signup",
   profile: "/profile",
+  users: "/users",
 }

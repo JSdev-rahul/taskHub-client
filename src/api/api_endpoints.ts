@@ -17,4 +17,8 @@ export const APIEndpoints = {
   deleteTodo: "/todos/:id",
   getTodoDetails: "/todos/:id",
   updateTodo: "/todos/:id",
+
+  // users EndPoints
+  getAllUser: "/users",
+  deleteUser: "/users/:id",
 }

@@ -14,6 +14,7 @@ import SelectComponent from "../components/SelectComponent"
 import SignUp from "./SignUp"
 import ResponsivePagination from "react-responsive-pagination"
 import "react-responsive-pagination/themes/classic.css"
+import SearchBoxComponent from "../components/SearchBox"
 
 const tabs: string[] = ["Pending", "Completed"]
 export interface ToDoListPageData {
@@ -88,19 +89,33 @@ const Home = () => {
     return () => debouncedSearch.cancel()
   }, [searchText])
 
+  const closeModel = () => {
+    setIsCreateNewUser(false)
+    setEditTodoItems(null)
+    setIsModelOpen(false)
+  }
+  const title = "Create New Todo"
   return (
     <>
+      <ModelComponent
+        {...{
+          isModelOpen,
+          setIsModelOpen,
+          closeModel,
+          title,
+        }}
+      >
+        <CreateToDoForm
+          setIsModelOpen={setIsModelOpen}
+          editToDoItems={editToDoItems}
+          setEditTodoItems={setEditTodoItems}
+          getAllUserTodoshandler={getAllUserTodoshandler}
+        />
+      </ModelComponent>
       <div className="mt-[50px] md:mt-16">
         <div className="flex flex-col md:flex-row w-full md:justify-center items-center ">
           <div className="flex justify-center gap-2 mx-2  mt-4">
             <div className="w-[50%]">
-              <label
-                htmlFor="search"
-                className="block text-sm mb-2 dark:text-slate-50 text-slate-950"
-              >
-                Filter
-              </label>
-
               <SelectComponent
                 value={pageData.priority}
                 id="priority"
@@ -116,69 +131,24 @@ const Home = () => {
               />
             </div>
             <div className="w-[50%]">
-              <label
-                htmlFor="search"
-                className="block text-sm mb-2 dark:text-slate-50 text-slate-950 "
-              >
-                Search
-              </label>
-              <div className="relative">
-                <input
-                  style={{
-                    outline: "none",
-                    border: "0.1px solid gray",
-                  }}
-                  value={searchText}
-                  onChange={(e: any) => setSearchText(e.target.value)}
-                  type="search"
-                  className="py-2 px-3 ps-11 block w-full rounded-lg md:text-sm text-xs"
-                  placeholder="Search ToDo... "
-                />
-                <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
-                  <img className="text-xs" src={SearchSvgIcon}></img>
-                </div>
-              </div>
+              <SearchBoxComponent
+                pageData={pageData}
+                setPageData={setPageData}
+              />
             </div>
           </div>
           <div className="flex justify-center items-center gap-3 md:mt-3">
             <div className="mt-7">
               {" "}
-              <ModelComponent
-                {...{
-                  isModelOpen,
-                  setIsModelOpen,
-                  setEditTodoItems,
-                  setIsCreateNewUser,
-                }}
+              <button
+                onClick={() => setIsModelOpen(true)}
+                type="button"
+                className="bg-primary shadow-2xl rounded-lg text-sm p-2 text-slate-50"
+                data-hs-overlay="#hs-slide-down-animation-modal"
               >
-                {/* */}
-                {isCreateNewUser ? (
-                  <SignUp isCreateNewUser={isCreateNewUser} />
-                ) : (
-                  <CreateToDoForm
-                    setIsModelOpen={setIsModelOpen}
-                    editToDoItems={editToDoItems}
-                    setEditTodoItems={setEditTodoItems}
-                    getAllUserTodoshandler={getAllUserTodoshandler}
-                  />
-                )}
-              </ModelComponent>
+                + Create ToDo
+              </button>
             </div>
-            {user?.role == "admin" && (
-              <div>
-                <button
-                  onClick={() => {
-                    setIsCreateNewUser(true)
-                    setIsModelOpen(true)
-                  }}
-                  type="button"
-                  className="bg-primary shadow-2xl rounded-lg text-sm p-2 mt-7 text-slate-50"
-                  data-hs-overlay="#hs-slide-down-animation-modal"
-                >
-                  + Create User
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>

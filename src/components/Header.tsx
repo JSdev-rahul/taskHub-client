@@ -1,21 +1,19 @@
-import React, { useState } from "react"
-import { handleLogoutReducer } from "../redux/slices/auth.slice"
+import { moonSvgIcon, sunSvgIcon } from "../assets"
 import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
-import { dummyProfile, logoutSvgIcon, moonSvgIcon, sunSvgIcon } from "../assets"
-import { routingConfig } from "../routes/routes"
 import { useNavigate } from "react-router-dom"
+import { handleLogoutReducer } from "../redux/slices/auth.slice"
 import { toggleDarkMode } from "../redux/slices/uimode.slice"
+import { Roles, adminMenuItem, usersMenuItem } from "../utils"
+import { routingConfig } from "../routes/routes"
 
 const Header = () => {
-  const { darkMode } = useAppSelector((state) => state.uimode)
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const navigate = useNavigate()
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prevState: any) => !prevState)
-  }
-  const { user } = useAppSelector((state) => state.auth)
   const dispatch = useAppDispatch()
+  const { darkMode } = useAppSelector((state) => state.uimode)
+  const { user } = useAppSelector((state) => state.auth)
+
+  const menuItems = user?.role == Roles.ADMIN ? adminMenuItem : usersMenuItem
+
   return (
     <header className="fixed top-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0 dark:bg-black">
       <nav
@@ -43,19 +41,20 @@ const Header = () => {
             </div>
           </div>
 
-          <div
-          // id="navbar-collapse-with-animation"
-          // className=" transition-all duration-300 basis-full grow sm:block"
-          >
-            {/* <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7"> */}
-            <div className="flex gap-4 justify-center   ">
-              <div
-                className="font-medium text-white sm:py-6 cursor-pointer"
-                onClick={() => navigate(routingConfig.profile)}
-                aria-current="page"
-              >
-                Profile
-              </div>
+          <div>
+            <div className="flex gap-4 justify-center">
+              {menuItems?.map((item) => {
+                return (
+                  <div
+                    className="font-medium text-white sm:py-6 cursor-pointer"
+                    onClick={() => navigate(item?.route)}
+                    aria-current="page"
+                  >
+                    {item?.pageName}
+                  </div>
+                )
+              })}
+
               <div className="sm:hidden">
                 <a
                   onClick={() => dispatch(handleLogoutReducer())}
