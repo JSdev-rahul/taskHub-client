@@ -25,11 +25,17 @@ const todosSlice = createSlice({
     builder.addCase(
       todosAsyncThunk.getUserAllTodos.fulfilled,
       (state, action: PayloadAction<{ data: any }>) => {
-        state.status = "fulfilled"
-        state.count = action.payload.data.count
-        state.allToDos = action.payload.data.result // Access user property from payload
+        if (action.payload) {
+          state.status = "fulfilled"
+          state.count = action.payload.data?.count
+          state.allToDos = action.payload.data?.result // Access user property from payload
+        } else {
+          // Handle the case where action.payload is undefined
+          return
+        }
       }
     )
+
     builder.addCase(todosAsyncThunk.getUserAllTodos.rejected, (state) => {
       state.status = "rejected"
     })

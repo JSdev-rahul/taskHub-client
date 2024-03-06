@@ -32,12 +32,14 @@ const useAxiosResponseInterceptor = () => {
             })
           )
             .unwrap()
-            .then(() => {})
+            .then(() => {
+              return
+            })
             .catch((err: any) => {
               dispatch(handleLogoutReducer())
               navigate(routingConfig.login)
             })
-          //
+          return
           // Unauthorized: Redirect to login page or handle authentication logic
           //
         } else {

@@ -9,7 +9,7 @@ const useAxiosRequestInterceptor = (access_token: string | null) => {
       (config) => {
         if (access_token) {
           config.headers["Authorization"] = "Bearer " + access_token
-          config.headers["Cookie"] = `access_token=${access_token}` // Manually set cookie
+          // config.headers["Cookie"] = `access_token=${access_token}` // Manually set cookie
         }
         // config.withCredentials = true // Ensure cookies are sent with all requests
         config.baseURL = configValue
