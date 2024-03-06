@@ -31,6 +31,17 @@ class UsersAsyncThunk {
       }
     }
   )
+  updateAvatarAsyncThunk = createAsyncThunk(
+    "updateAvatarAsyncThunk",
+    async (payload: any, { rejectWithValue }) => {
+      try {
+        const response = await this.usersService.updateAvatarService(payload)
+        return response
+      } catch (err) {
+        return rejectWithValue(err)
+      }
+    }
+  )
 }
 
 export const usersAsyncThunk = new UsersAsyncThunk()

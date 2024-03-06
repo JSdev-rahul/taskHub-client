@@ -38,6 +38,13 @@ const authSlice = createSlice({
       localStorage.removeItem("persist:root")
       googleLogout()
     },
+    updateProfileReducer: (state: any, action) => {
+      if (action?.payload) {
+        const { url, public_id } = action?.payload
+        state.user.avatar = { url: url, public_id: public_id }
+      }
+      return
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(authsAsyncThunk.verifyOtpAsyncThunk.pending, (state) => {
@@ -95,5 +102,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { handleLogoutReducer } = authSlice.actions
+export const { handleLogoutReducer, updateProfileReducer } = authSlice.actions
 export default authSlice.reducer

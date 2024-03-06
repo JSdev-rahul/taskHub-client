@@ -15,10 +15,12 @@ import SelectComponent from "../components/SelectComponent"
 import { routingConfig } from "../routes/routes"
 import { AUTH_ROLE } from "../utils/constants"
 import SignupValidationSchema from "../validator/signupSchema"
-registerPlugin(
-  FilePondPluginFileValidateType
-  //  FilePondPluginImagePreview
-)
+import FilePondPluginImagePreview from "filepond-plugin-image-preview"
+
+// Import the plugin styles
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+
+registerPlugin(FilePondPluginFileValidateType, FilePondPluginImagePreview)
 interface iSignUpProps {
   isCreateNewUser?: boolean
 }

@@ -15,6 +15,7 @@ const API_CONFIG = {
 
   GET_ALL_USERS: "/users",
   DELETE_USER: "/users/:id",
+  UPDATE_AVATAR: "/avatar/update-avatar",
 }
 
 export const API_ENDPOINT = {
@@ -40,4 +41,5 @@ export const API_ENDPOINT = {
   // users EndPoints
   GET_ALL_USERS: API_CONFIG.GET_ALL_USERS,
   DELETE_USER: API_CONFIG.DELETE_USER,
+  UPDATE_AVATAR: API_CONFIG.UPDATE_AVATAR,
 }

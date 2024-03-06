@@ -13,4 +13,8 @@ export class UsersService {
     const url = replaceUrl(API_ENDPOINT.DELETE_USER, { id })
     return sendRequest(url, METHODS.DELETE)
   }
+  updateAvatarService = (payload: any) => {
+    const url = API_ENDPOINT.UPDATE_AVATAR
+    return sendRequest(url, METHODS.POST, payload)
+  }
 }
