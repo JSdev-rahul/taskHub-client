@@ -1,7 +1,15 @@
 import { debounce } from "lodash"
 import React, { useEffect, useState } from "react"
 
-const SearchBoxComponent = ({ setPageData, pageData }) => {
+interface iSearchBoxComponent {
+  setPageData: React.Dispatch<any>
+  pageData: Record<string, any>
+}
+
+const SearchBoxComponent: React.FC<iSearchBoxComponent> = ({
+  setPageData,
+  pageData,
+}) => {
   const [searchText, setSearchText] = useState("")
 
   useEffect(() => {

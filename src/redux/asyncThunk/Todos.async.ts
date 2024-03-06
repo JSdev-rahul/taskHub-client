@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { TodosService } from "../service/Todos.service"
-import { TodoFormData } from "../../pages/CreateToDoForm"
-import { ToDoListPageData } from "../../pages/Home"
+import { iToDoPageData, iTodoFormData } from "../../utils/interfaces"
 
 class TodosAsyncThunk {
   private todosService: TodosService
@@ -12,7 +11,7 @@ class TodosAsyncThunk {
 
   getUserAllTodos = createAsyncThunk(
     "getAllTodos",
-    async (payload: ToDoListPageData, { rejectWithValue }) => {
+    async (payload: iToDoPageData, { rejectWithValue }) => {
       try {
         const response = await this.todosService.getAllUserTodos(payload)
         return response
@@ -23,7 +22,7 @@ class TodosAsyncThunk {
   )
   createTodoAsyncThunk = createAsyncThunk(
     "createNewTodo",
-    async (payload: TodoFormData, { rejectWithValue }) => {
+    async (payload: iTodoFormData, { rejectWithValue }) => {
       try {
         const response = await this.todosService.createNewTodoService(payload)
         return response
@@ -56,7 +55,7 @@ class TodosAsyncThunk {
   )
   updateTodoAsyncThunk = createAsyncThunk(
     "updateTodo",
-    async (payload: TodoFormData, { rejectWithValue }) => {
+    async (payload: iTodoFormData, { rejectWithValue }) => {
       try {
         const response = await this.todosService.updateTodoService(payload)
         return response

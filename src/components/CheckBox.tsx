@@ -1,24 +1,14 @@
 import React from "react"
+import { iCheckBoxProps } from "../utils/componentProps"
 
-interface CheckBoxProps {
-  label: string
-  name: string
-  type: string
-  id: string
-  value: string
-  onChange: any
-  checked: any
-  error: string | null | undefined
-}
-
-const CheckBox: React.FC<CheckBoxProps> = ({
-  type,
+const CheckBox: React.FC<iCheckBoxProps> = ({
   id,
-  value,
-  onChange,
-  checked,
-  label,
   name,
+  label,
+  type,
+  value,
+  checked,
+  onChange,
   error,
 }) => {
   return (

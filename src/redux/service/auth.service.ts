@@ -1,5 +1,6 @@
 import { API_ENDPOINT } from "../../api/api_endpoints"
-import { LoginFormValues, RefreshTokenPayload } from "../asyncThunk/auth.async"
+import { iSignInForm } from "../../utils/interfaces"
+import { RefreshTokenPayload } from "../asyncThunk/auth.async"
 import { sendRequest } from "../constant/fetchApiHandler"
 import { METHODS } from "../constant/redux.constant"
 
@@ -8,7 +9,7 @@ export class AuthService {
     const url = API_ENDPOINT.SIGNUP
     return sendRequest(url, METHODS.POST, payload)
   }
-  logInService = (payload: LoginFormValues) => {
+  signInService = (payload: iSignInForm) => {
     const url = API_ENDPOINT.LOGIN
     return sendRequest(url, METHODS.POST, payload)
   }

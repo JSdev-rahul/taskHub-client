@@ -1,10 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { AuthService } from "../service/auth.service"
+import { iSignInForm } from "../../utils/interfaces"
 
-export interface LoginFormValues {
-  email: string
-  password: string
-}
 export interface RefreshTokenPayload {
   refreshToken: string | null
 }
@@ -26,11 +23,11 @@ class AuthAsyncThunk {
       }
     }
   )
-  loginAsyncThunk = createAsyncThunk(
+  signInAsyncThunk = createAsyncThunk(
     "loginAsync",
-    async (payload: LoginFormValues, { rejectWithValue }) => {
+    async (payload: iSignInForm, { rejectWithValue }) => {
       try {
-        const response = await this.authService.logInService(payload)
+        const response = await this.authService.signInService(payload)
         return response
       } catch (err) {
         return rejectWithValue(err)

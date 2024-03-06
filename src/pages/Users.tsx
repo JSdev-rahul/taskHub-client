@@ -10,32 +10,23 @@ import ModelComponent from "../components/ModelComponent"
 import SignUp from "./SignUp"
 import deleteConfirmationPopup from "../utils/deleteConfirmationPop"
 import DropdownMenu from "../components/DropDown"
+import { iUserPaginationQuery } from "../utils/interfaces"
+import {
+  TableColumnInfo,
+  UserTableColumns,
+  userTableFilterOptions,
+} from "../utils/constants"
 
-export interface PageDataProps {
-  page: number
-  limit: number
-  q: string
-  filter: ""
-}
 const Users = () => {
-  const [isModelOpen, setIsModelOpen] = useState(false)
+  const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
   const dispatch = useAppDispatch()
   const { users, count } = useAppSelector((state) => state.user)
-  const [pageData, setPageData] = useState<PageDataProps>({
+  const [pageData, setPageData] = useState<iUserPaginationQuery>({
     page: 1,
     limit: 5,
     q: "",
     filter: "",
   })
-
-  const tableColums: string[] = [
-    "Name",
-    "Role",
-    "Gender",
-    "Status",
-    "Created",
-    "Action",
-  ]
 
   const fetchUsersData = () => {
     dispatch(usersAsyncThunk.getAllUsers(pageData))
@@ -125,6 +116,7 @@ const Users = () => {
                           title={"Filter"}
                           setPageData={setPageData}
                           pageData={pageData}
+                          option={userTableFilterOptions}
                         />
                       </div>
                       <button
@@ -155,7 +147,7 @@ const Users = () => {
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-slate-800">
                     <tr>
-                      {tableColums?.map((item) => {
+                      {UserTableColumns?.map((item: TableColumnInfo) => {
                         return (
                           <th
                             scope="col"
@@ -163,7 +155,7 @@ const Users = () => {
                           >
                             <div className="flex items-center gap-x-2">
                               <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                {item}
+                                {item.name}
                               </span>
                             </div>
                           </th>

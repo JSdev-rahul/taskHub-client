@@ -1,6 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { todosAsyncThunk } from "../asyncThunk/Todos.async"
-import { TodoItem } from "../../components/Accordion"
 import { usersAsyncThunk } from "../asyncThunk/user.asyns"
 
 interface TodoState {

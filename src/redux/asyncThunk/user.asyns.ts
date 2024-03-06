@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { TodosService } from "../service/Todos.service"
-import { ToDoListPageData } from "../../pages/Home"
 import { UsersService } from "../service/user.service"
-import { PageDataProps } from "../../pages/Users"
+import { iUserPaginationQuery } from "../../utils/interfaces"
 
 class UsersAsyncThunk {
   private usersService: UsersService
@@ -13,7 +11,7 @@ class UsersAsyncThunk {
 
   getAllUsers = createAsyncThunk(
     "getAllUsers",
-    async (payload: PageDataProps, { rejectWithValue }) => {
+    async (payload: iUserPaginationQuery, { rejectWithValue }) => {
       try {
         const response = await this.usersService.getAllUsers(payload)
         return response

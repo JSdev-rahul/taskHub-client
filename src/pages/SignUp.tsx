@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { InputField } from "../components/Input"
 import { useFormik } from "formik"
 import CheckBox from "../components/CheckBox"
@@ -12,29 +12,22 @@ import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
 import { authsAsyncThunk } from "../redux/asyncThunk/auth.async"
 import Button from "../components/Button"
 import SelectComponent from "../components/SelectComponent"
-import signupValidationSchema from "../validator/signupValidationSchema"
 import { routingConfig } from "../routes/routes"
+import { AUTH_ROLE } from "../utils/constants"
+import SignupValidationSchema from "../validator/signupSchema"
 registerPlugin(
   FilePondPluginFileValidateType
   //  FilePondPluginImagePreview
 )
-
-interface SignUpProps {
+interface iSignUpProps {
   isCreateNewUser?: boolean
 }
-interface Roles {
-  id: number
-  priority: string
-}
-const roles: Roles[] = [
-  { id: 1, priority: "user" },
-  { id: 2, priority: "admin" },
-]
-const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
-  const [files, setFiles] = useState<any>([]) // Specify type as FilePondFile
+
+const SignUp: React.FC<iSignUpProps> = ({ isCreateNewUser }) => {
   const { user } = useAppSelector((state) => state.auth)
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const dispatch = useAppDispatch()
+  const [files, setFiles] = useState<any>([])
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
   const defaultOptions: Options = {
     loop: true,
@@ -59,7 +52,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
     initialValues,
     validateOnBlur: true,
     validateOnMount: false,
-    validationSchema: signupValidationSchema,
+    validationSchema: SignupValidationSchema,
     validateOnChange: true,
     onSubmit: (values) => {
       setIsDisabled(true)
@@ -190,7 +183,7 @@ const SignUp: React.FC<SignUpProps> = ({ isCreateNewUser }) => {
                       name="role"
                       onChange={formik.handleChange}
                       title="Select Role"
-                      priorities={roles}
+                      options={AUTH_ROLE}
                     />
                   </div>
                 )}

@@ -1,23 +1,14 @@
 import React from "react"
+import { iInputFieldProps } from "../utils/componentProps"
 
-interface InputFieldProps {
-  label: string
-  type: string
-  id: string
-  name: string
-  onChange: any
-  error: any
-  value: string
-}
-
-export const InputField: React.FC<InputFieldProps> = ({
-  label,
-  type,
+export const InputField: React.FC<iInputFieldProps> = ({
   id,
   name,
-  onChange,
-  error,
+  type,
   value,
+  onChange,
+  label,
+  error,
 }) => {
   return (
     <>

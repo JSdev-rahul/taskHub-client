@@ -6,24 +6,20 @@ import { authsAsyncThunk } from "../redux/asyncThunk/auth.async"
 import Button from "../components/Button"
 import { useNavigate } from "react-router-dom"
 import { routingConfig } from "../routes/routes"
-import signinValidationSchema from "../validator/signinValidationSchema"
 import OtpComponent from "../components/OtpComponent"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
-
-interface FormValues {
-  email: string
-  password: string
-}
+import { iSignInForm } from "../utils/interfaces"
+import SigninValidationSchema from "../validator/signInSchema"
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const [otp, setOtp] = useState<string>("")
   const [isOtpPage, setIsOtpPage] = useState<boolean>(false)
   const [time, setTime] = useState<number>(180)
   const [timer, setTimer] = useState<any>(null)
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
-  const [initialValues, setInitialValues] = useState<FormValues>({
+  const [initialValues, setInitialValues] = useState<iSignInForm>({
     email: "super-admin@gmail.com",
     password: "admin123",
   })
@@ -32,13 +28,13 @@ const SignIn = () => {
     initialValues,
     validateOnBlur: true,
     validateOnChange: true,
-    validationSchema: signinValidationSchema,
+    validationSchema: SigninValidationSchema,
     onSubmit: (values) => {
       clearInterval(timer)
       setIsDisabled(true)
-      dispatch(authsAsyncThunk.loginAsyncThunk(values))
+      dispatch(authsAsyncThunk.signInAsyncThunk(values))
         .unwrap()
-        .then((res: any) => {
+        .then(() => {
           setIsOtpPage(true)
           handleTimer()
         })
@@ -61,10 +57,10 @@ const SignIn = () => {
     const email = formik.values.email
     dispatch(authsAsyncThunk.verifyOtpAsyncThunk({ email, otp }))
       .unwrap()
-      .then((res: any) => {
+      .then(() => {
         navigate(routingConfig.home)
       })
-      .catch((err: any) => {})
+      .catch(() => {})
   }
 
   const handleRegenerateOTP = () => {
@@ -73,8 +69,8 @@ const SignIn = () => {
     const email = formik.values.email
     dispatch(authsAsyncThunk.regenerateOTPAsyncThunk({ email }))
       .unwrap()
-      .then((res: any) => {})
-      .catch((err: any) => {})
+      .then()
+      .catch()
   }
 
   const handleTimer = () => {
@@ -101,7 +97,7 @@ const SignIn = () => {
             navigate(routingConfig.home)
           }
         })
-        .catch((err: any) => {})
+        .catch()
     }
   }
 

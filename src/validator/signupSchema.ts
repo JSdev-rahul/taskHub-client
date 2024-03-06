@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-const signupValidationSchema = Yup.object().shape({
+const SignupValidationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   gender: Yup.string().required("Gender is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -10,4 +10,4 @@ const signupValidationSchema = Yup.object().shape({
   avatar: Yup.string().required("Avatar is required"),
 })
 
-export default signupValidationSchema
+export default SignupValidationSchema

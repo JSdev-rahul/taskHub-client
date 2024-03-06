@@ -1,18 +1,13 @@
 import { useState } from "react"
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu"
 import "@szhsin/react-menu/dist/index.css"
+import { iDropDownMenuProps } from "../utils/componentProps"
 
-interface DropdownMenuProps {
-  title?: string
-  option?: string[]
-  setPageData?: any
-  pageData?: any
-}
-
-const DropdownMenu: React.FC<DropdownMenuProps> = ({
+const DropdownMenu: React.FC<iDropDownMenuProps> = ({
   title,
   setPageData,
   pageData,
+  option,
 }) => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
@@ -31,24 +26,16 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
       }
       menuButton={<MenuButton>{title}</MenuButton>}
     >
-      <MenuItem
-        value={"all"}
-        className={isDarkMode ? "szh-menu-container--theme-dark" : ""}
-      >
-        all
-      </MenuItem>
-      <MenuItem
-        value={"user"}
-        className={isDarkMode ? "szh-menu-container--theme-dark" : ""}
-      >
-        user
-      </MenuItem>
-      <MenuItem
-        value={"admin"}
-        className={isDarkMode ? "szh-menu-container--theme-dark" : ""}
-      >
-        admin
-      </MenuItem>
+      {option?.map((item: any) => {
+        return (
+          <MenuItem
+            value={item?.value}
+            className={isDarkMode ? "szh-menu-container--theme-dark" : ""}
+          >
+            {item?.value}
+          </MenuItem>
+        )
+      })}
     </Menu>
   )
 }

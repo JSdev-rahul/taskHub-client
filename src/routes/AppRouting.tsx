@@ -5,15 +5,14 @@ import { Route, Routes } from "react-router-dom"
 import Loading from "../components/Loading"
 import { ProtectedRoute } from "./index"
 import { routingConfig } from "./routes"
-import Profile from "../pages/Profile"
-import Users from "../pages/Users"
-import { Roles } from "../utils"
+import { Roles } from "../utils/constants"
 
 const MainLayout = lazy(() => import("../layout/mainLayout"))
 const SignInPage = lazy(() => import("../pages/SignIn"))
 const SignUpPage = lazy(() => import("../pages/SignUp"))
 const HomePage = lazy(() => import("../pages/Home"))
-
+const UserPage = lazy(() => import("../pages/Users"))
+const ProfilePage = lazy(() => import("../pages/Profile"))
 const AppRouting = ({ access_token }: { access_token: string | null }) => {
   const publicAuthAccessList = [Roles.USER, Roles.ADMIN]
   const privateAuthAccessList = [Roles.ADMIN]
@@ -26,10 +25,7 @@ const AppRouting = ({ access_token }: { access_token: string | null }) => {
           <Route
             path={routingConfig.home}
             element={
-              <ProtectedRoute
-                // access_token={access_token}
-                authorized={publicAuthAccessList}
-              >
+              <ProtectedRoute authorized={publicAuthAccessList}>
                 <HomePage />
               </ProtectedRoute>
             }
@@ -38,22 +34,16 @@ const AppRouting = ({ access_token }: { access_token: string | null }) => {
           <Route
             path={routingConfig.profile}
             element={
-              <ProtectedRoute
-                // access_token={access_token}
-                authorized={publicAuthAccessList}
-              >
-                <Profile />
+              <ProtectedRoute authorized={publicAuthAccessList}>
+                <ProfilePage />
               </ProtectedRoute>
             }
           />
           <Route
             path={routingConfig.users}
             element={
-              <ProtectedRoute
-                // access_token={access_token}
-                authorized={privateAuthAccessList}
-              >
-                <Users />
+              <ProtectedRoute authorized={privateAuthAccessList}>
+                <UserPage />
               </ProtectedRoute>
             }
           />

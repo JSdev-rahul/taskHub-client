@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-export const createToDoValidationSchema = Yup.object().shape({
+export const TodoItemSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
   description: Yup.string().required("Description is required"),
   priority: Yup.string()

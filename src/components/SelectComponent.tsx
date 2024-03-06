@@ -1,28 +1,15 @@
 import React from "react"
+import { iPriority } from "../utils/constants"
+import { iSelectComponentProps } from "../utils/componentProps"
 
-interface Priority {
-  id: number
-  priority: string
-}
-
-interface SelectComponentProps {
-  priorities: Priority[]
-  title: string
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
-  id: string
-  name: string
-  error?: string
-  value: string
-}
-
-const SelectComponent: React.FC<SelectComponentProps> = ({
-  priorities,
-  title,
-  onChange,
+const SelectComponent: React.FC<iSelectComponentProps> = ({
   id,
   name,
-  error,
+  title,
   value,
+  onChange,
+  error,
+  options,
 }) => {
   return (
     <>
@@ -40,10 +27,10 @@ const SelectComponent: React.FC<SelectComponentProps> = ({
         <option className="text-[10px] md:text-sm" selected disabled>
           {title}
         </option>
-        {priorities?.map((item: Priority) => {
+        {options?.map((item: iPriority) => {
           return (
-            <option className="text-[10px] md:text-sm" value={item.priority}>
-              {item.priority}
+            <option className="text-[10px] md:text-sm" value={item.value}>
+              {item.value}
             </option>
           )
         })}

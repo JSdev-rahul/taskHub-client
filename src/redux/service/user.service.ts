@@ -1,10 +1,10 @@
 import { API_ENDPOINT } from "../../api/api_endpoints"
-import { PageDataProps } from "../../pages/Users"
+import { iUserPaginationQuery } from "../../utils/interfaces"
 import { sendRequest } from "../constant/fetchApiHandler"
 import { METHODS, replaceUrl } from "../constant/redux.constant"
 
 export class UsersService {
-  getAllUsers = (params: PageDataProps) => {
+  getAllUsers = (params: iUserPaginationQuery) => {
     const url = API_ENDPOINT.GET_ALL_USERS
     return sendRequest(url, METHODS.GET, null, params)
   }

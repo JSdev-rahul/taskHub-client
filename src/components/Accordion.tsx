@@ -3,7 +3,7 @@ import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion"
 import { deleteSVGIcon, downSignSVGIcon, editSvgIcon } from "../assets"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
-import { ToDoListPageData } from "../pages/Home"
+import { iToDoPageData } from "../utils/interfaces"
 
 export interface TodoItem {
   id: string
@@ -19,8 +19,8 @@ interface Props {
   todos: TodoItem[] | null
   deleteToDoHandler: (id: string) => void
   setEditTodoItems: any
-  getAllUserTodoshandler: any
-  pageData: ToDoListPageData
+  getAllUserTodoshandler: () => void
+  pageData: iToDoPageData
 }
 
 const AccordionComponent: React.FC<Props> = ({
@@ -30,11 +30,7 @@ const AccordionComponent: React.FC<Props> = ({
   getAllUserTodoshandler,
   pageData,
 }) => {
-  const [activeAccordion, setActiveAccordion] = useState(null)
   const dispatch = useAppDispatch()
-  const toggleAccordion = (accordionId: any) => {
-    setActiveAccordion(accordionId === activeAccordion ? null : accordionId)
-  }
 
   const AccordionItem = ({ index, header, id, item, ...rest }: any) => (
     <Item

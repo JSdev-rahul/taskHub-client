@@ -1,31 +1,16 @@
 import React, { useEffect, useState } from "react"
-import SelectComponent from "../components/SelectComponent"
-import DateTimePicker from "react-datetime-picker"
-import { InputField } from "../components/Input"
 import { useFormik } from "formik"
-import Button from "../components/Button"
+import DateTimePicker from "react-datetime-picker"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
-import { createToDoValidationSchema } from "../validator/createToDoValidationSchema"
-import { PRIORITIES } from "../utils"
+import { TodoItemSchema } from "../validator/toDoSchema"
+import { PRIORITIES } from "../utils/constants"
+import { iToDoFormProps } from "../utils/interfaces"
+import SelectComponent from "../components/SelectComponent"
+import { InputField } from "../components/Input"
+import Button from "../components/Button"
 
-interface CreateToDoFormProps {
-  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
-  editToDoItems: string | null
-  setEditTodoItems: any
-  getAllUserTodoshandler: () => void
-}
-
-export interface TodoFormData {
-  title?: string
-  description?: string
-  priority?: "Low" | "Medium" | "High"
-  completed: boolean
-  dueDateTime?: Date
-  id?: string
-}
-
-const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
+const CreateToDoForm: React.FC<iToDoFormProps> = ({
   setIsModelOpen,
   editToDoItems,
   setEditTodoItems,
@@ -33,7 +18,6 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
 }) => {
   const dispatch = useAppDispatch()
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
-
   const [initialValues, setInitialValues] = useState<any>({
     title: "",
     description: "",
@@ -45,7 +29,7 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
-    validationSchema: createToDoValidationSchema,
+    validationSchema: TodoItemSchema,
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
@@ -116,7 +100,7 @@ const CreateToDoForm: React.FC<CreateToDoFormProps> = ({
             name="priority"
             onChange={formik.handleChange}
             title="Select Priority"
-            priorities={PRIORITIES}
+            options={PRIORITIES}
           />
         </div>
         <div className="mt-2">

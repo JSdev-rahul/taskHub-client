@@ -1,25 +1,15 @@
 import React, { memo } from "react"
 import OtpInput from "react-otp-input"
+import { iOtpComponentProps } from "../utils/componentProps"
 
-interface otpComponentProps {
-  otp: string
-  setTime: React.Dispatch<any>
-  setOtp: React.Dispatch<string>
-  time: number
-  handleRegenerateOTP: () => void
-  handleOtpVerification: () => void
-  timer: any
-  setIsOtpPage: React.Dispatch<boolean>
-}
-
-const OtpComponent: React.FC<otpComponentProps> = ({
+const OtpComponent: React.FC<iOtpComponentProps> = ({
   otp,
   setOtp,
   time,
-  handleRegenerateOTP,
-  handleOtpVerification,
   timer,
   setTime,
+  handleRegenerateOTP,
+  handleOtpVerification,
   setIsOtpPage,
 }) => {
   const formattedTime = `${String(Math.floor(time / 60)).padStart(

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
 import { useNavigate } from "react-router-dom"
 import { handleLogoutReducer } from "../redux/slices/auth.slice"
 import { toggleDarkMode } from "../redux/slices/uimode.slice"
-import { Roles, adminMenuItem, usersMenuItem } from "../utils"
+import { Roles, adminMenuItem, usersMenuItem } from "../utils/constants"
 import { routingConfig } from "../routes/routes"
 
 const Header = () => {

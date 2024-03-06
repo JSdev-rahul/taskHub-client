@@ -1,14 +1,9 @@
 import React, { useState } from "react"
 import "react-responsive-modal/styles.css"
 import { Modal } from "react-responsive-modal"
+import { iModelComponentProps } from "../utils/componentProps"
 
-interface ModelComponentProps {
-  children: JSX.Element
-  isModelOpen: boolean
-  closeModel: () => void
-  ModelTitle: string
-}
-const ModelComponent: React.FC<ModelComponentProps> = ({
+const ModelComponent: React.FC<iModelComponentProps> = ({
   children,
   ModelTitle,
   isModelOpen,
@@ -18,24 +13,20 @@ const ModelComponent: React.FC<ModelComponentProps> = ({
     closeModel()
   }
   return (
-    <>
-      <div>
-        <div className="">
-          <Modal open={isModelOpen} onClose={() => onCloseModal()} center>
-            <div
-              className="flex justify-center text-lg "
-              style={{
-                borderBottom: "1px solid gray",
-              }}
-            >
-              {ModelTitle}
-            </div>
-
-            {children}
-          </Modal>
+    <div>
+      <Modal open={isModelOpen} onClose={() => onCloseModal()} center>
+        <div
+          className="flex justify-center text-lg "
+          style={{
+            borderBottom: "1px solid gray",
+          }}
+        >
+          {ModelTitle}
         </div>
-      </div>
-    </>
+
+        {children}
+      </Modal>
+    </div>
   )
 }
 

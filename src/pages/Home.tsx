@@ -12,25 +12,17 @@ import SelectComponent from "../components/SelectComponent"
 import ResponsivePagination from "react-responsive-pagination"
 import "react-responsive-pagination/themes/classic.css"
 import SearchBoxComponent from "../components/SearchBox"
-import { FILTER_PRIORITY, TABS } from "../utils"
-
-export interface ToDoListPageData {
-  page: number
-  limit: number
-  q: string
-  priority: string
-  completed: boolean
-  id: string
-}
+import { FILTER_PRIORITY, TABS } from "../utils/constants"
+import { iToDoPageData } from "../utils/interfaces"
 
 const Home = () => {
-  const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
+  const dispatch = useAppDispatch()
   const { allToDos, count } = useAppSelector((state) => state.todos)
   const { user } = useAppSelector((state) => state.auth)
+  const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<number>(0)
-  const dispatch = useAppDispatch()
-  const [pageData, setPageData] = useState<ToDoListPageData>({
+  const [pageData, setPageData] = useState<iToDoPageData>({
     page: 1,
     limit: 5,
     q: "",
@@ -98,7 +90,7 @@ const Home = () => {
                   })
                 }
                 title="Select Priority "
-                priorities={FILTER_PRIORITY}
+                options={FILTER_PRIORITY}
               />
             </div>
             <div className="w-[50%]">
@@ -125,7 +117,7 @@ const Home = () => {
       </div>
 
       <Tabs
-        tabsHeader={TABS}
+        tabs={TABS}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setPageData={setPageData}
