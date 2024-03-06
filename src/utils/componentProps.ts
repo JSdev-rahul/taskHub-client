@@ -68,3 +68,8 @@ export interface iTabsProps {
   pageData: iToDoPageData
   setPageData: React.Dispatch<React.SetStateAction<iToDoPageData>>
 }
+
+export interface iSVGImageProps {
+  src: string
+  title: string
+}

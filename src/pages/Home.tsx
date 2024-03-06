@@ -35,6 +35,7 @@ const Home = () => {
     dispatch(todosAsyncThunk.getUserAllTodos({ ...pageData }))
   }
   const deleteToDoHandler = (id: string) => {
+    console.log(id)
     dispatch(todosAsyncThunk.deleteTodoAsyncThunk(id))
       .unwrap()
       .then(() => {

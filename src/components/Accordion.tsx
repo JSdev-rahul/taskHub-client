@@ -4,9 +4,10 @@ import { deleteSVGIcon, downSignSVGIcon, editSvgIcon } from "../assets"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
 import { iToDoPageData } from "../utils/interfaces"
+import SVGImage from "./SvgRender"
 
 export interface TodoItem {
-  id: string
+  _id: string
   title: string
   description: string
   priority: "High" | "Medium" | "Low"
@@ -71,27 +72,24 @@ const AccordionComponent: React.FC<Props> = ({
               >
                 {item.priority}
               </span>
-
-              <img
+              <div
                 onClick={(e) => {
                   e.stopPropagation()
                   deleteToDoHandler(id)
                 }}
-                className="text-slate-50 transition-transform duration-200 ease-out"
-                src={deleteSVGIcon}
-                alt="Delete"
-              />
-              <img
+              >
+                <SVGImage src={deleteSVGIcon} title="deleteIcon" />
+              </div>
+              <div
                 onClick={(e) => {
                   e.stopPropagation()
-
                   setEditTodoItems(item)
                   // Handle edit action here
                 }}
-                className="text-slate-50 transition-transform duration-200 ease-out"
-                src={editSvgIcon} // Assuming editSvgIcon is imported
-                alt="Edit"
-              />
+              >
+                <SVGImage src={editSvgIcon} title="editIcon" />
+              </div>
+
               <img
                 className={`text-slate-50 transition-transform duration-200 ease-out ${
                   isEnter && "rotate-180"
@@ -124,10 +122,10 @@ const AccordionComponent: React.FC<Props> = ({
         {todos ? (
           todos?.map((item: TodoItem, index: number) => (
             <AccordionItem
-              key={item.id}
+              key={item._id}
               header={item.title}
               index={index + 1}
-              id={item.id}
+              id={item._id}
               item={item}
             >
               <div className="text-sm text-slate-900">{item.description}</div>

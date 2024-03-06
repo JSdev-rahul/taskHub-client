@@ -30,8 +30,9 @@ export class TodosService {
   }
 
   updateTodoService = (payload: iTodoFormData) => {
-    const { id, ...data }: any = payload
-    const url = replaceUrl(API_ENDPOINT.UPDATE_TODO, { id })
+    const { _id, ...data }: any = payload
+    console.log(_id)
+    const url = replaceUrl(API_ENDPOINT.UPDATE_TODO, { id: _id })
     return sendRequest(url, METHODS.PATCH, data)
   }
 }

@@ -5,6 +5,7 @@ import { handleLogoutReducer } from "../redux/slices/auth.slice"
 import { toggleDarkMode } from "../redux/slices/uimode.slice"
 import { Roles, adminMenuItem, usersMenuItem } from "../utils/constants"
 import { routingConfig } from "../routes/routes"
+import SVGImage from "./SvgRender"
 
 const Header = () => {
   const navigate = useNavigate()
@@ -32,11 +33,13 @@ const Header = () => {
               </button>
             </div>
 
-            <div>
-              <img
-                onClick={() => dispatch(toggleDarkMode())}
-                className="w-7 ml-2 cursor-pointer"
+            <div
+              className="w-7 ml-2 cursor-pointer"
+              onClick={() => dispatch(toggleDarkMode())}
+            >
+              <SVGImage
                 src={darkMode ? sunSvgIcon : moonSvgIcon}
+                title="uimode"
               />
             </div>
           </div>

@@ -16,6 +16,8 @@ import {
   UserTableColumns,
   userTableFilterOptions,
 } from "../utils/constants"
+import { activeSvgIcon, filterIcon, plusSvgIcon } from "../assets"
+import SVGImage from "../components/SvgRender"
 
 const Users = () => {
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
@@ -95,23 +97,7 @@ const Users = () => {
                         />
                       </div>
                       <div className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        <svg
-                          className="flex-shrink-0 size-3.5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          <path d="M3 6h18" />
-                          <path d="M7 12h10" />
-                          <path d="M10 18h4" />
-                        </svg>
-
+                        <SVGImage src={filterIcon} title="filterIcon" />
                         <DropdownMenu
                           title={"Filter"}
                           setPageData={setPageData}
@@ -123,21 +109,7 @@ const Users = () => {
                         onClick={() => setIsModelOpen(true)}
                         className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       >
-                        <svg
-                          className="flex-shrink-0 size-3"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
-                          <path
-                            d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                          />
-                        </svg>
+                        <SVGImage src={plusSvgIcon} title="plusIcon" />
                         Add user
                       </button>
                     </div>
@@ -207,16 +179,10 @@ const Users = () => {
                           <td className="size-px whitespace-nowrap text-center">
                             <div className="px-6 py-3">
                               <span className="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                                <svg
-                                  className="size-2.5"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="16"
-                                  height="16"
-                                  fill="currentColor"
-                                  viewBox="0 0 16 16"
-                                >
-                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                </svg>
+                                <SVGImage
+                                  src={activeSvgIcon}
+                                  title="ActiveIcon"
+                                />
                                 Active
                               </span>
                             </div>
