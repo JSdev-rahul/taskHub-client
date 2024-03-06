@@ -35,9 +35,9 @@ const SearchBoxComponent: React.FC<iSearchBoxComponent> = ({
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
-          id="hs-as-table-product-review-search"
+          // id="hs-as-table-product-review-search"
           name="hs-as-table-product-review-search"
-          className="py-2 px-3 ps-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+          className="py-[24px] sm:py-2 px-3 ps-11 block w-full border border-gray-200 rounded-lg text-sm  dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
           placeholder="Search"
         />
         <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">

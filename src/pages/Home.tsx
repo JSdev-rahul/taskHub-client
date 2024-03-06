@@ -76,9 +76,9 @@ const Home = () => {
         />
       </ModelComponent>
       <div className="mt-[50px] md:mt-16">
-        <div className="flex flex-col md:flex-row w-full md:justify-center items-center ">
-          <div className="flex justify-center gap-2 mx-2  mt-4">
-            <div className="w-[50%]">
+        <div className="flex flex-col md:flex-row w-full md:justify-center sm:items-center ">
+          <div className="flex flex-col sm:flex-row sm:justify-center sm:items-end gap-4 sm:gap-2 mx-2 mt-4">
+            <div className="w-full sm:w-[50%] ">
               <SelectComponent
                 value={pageData.priority}
                 id="priority"
@@ -93,20 +93,18 @@ const Home = () => {
                 options={FILTER_PRIORITY}
               />
             </div>
-            <div className="w-[50%]">
+            <div className="w-full sm:w-[50%] ">
               <SearchBoxComponent
                 pageData={pageData}
                 setPageData={setPageData}
               />
             </div>
-          </div>
-          <div className="flex justify-center items-center gap-3 md:mt-3">
-            <div className="mt-7">
-              {" "}
+
+            <div className="flex justify-center items-center gap-3 md:mt-3 w-full sm:w-[50%] ">
               <button
                 onClick={() => setIsModelOpen(true)}
                 type="button"
-                className="bg-primary shadow-2xl rounded-lg text-sm p-2 text-slate-50"
+                className="bg-primary shadow-2xl rounded-lg text-sm py-4 sm:p-2 text-slate-50 w-full "
                 data-hs-overlay="#hs-slide-down-animation-modal"
               >
                 + Create ToDo

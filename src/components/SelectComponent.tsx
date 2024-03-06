@@ -16,13 +16,13 @@ const SelectComponent: React.FC<iSelectComponentProps> = ({
       <select
         style={{
           outline: "none",
-          border: "0.1px solid gray",
+          // border: "0.1px solid gray",
         }}
         value={value}
         name={name}
         id={id}
         onChange={onChange}
-        className="py-2 px-4 block w-full border border-gray-200 rounded-lg text-xs md:text-sm outline-none"
+        className="py-[24px] sm:py-2 px-4 block w-full border dark:border-gray-700 dark:text-gray-400 dark:bg-slate-900  border-gray-200 rounded-lg text-xs md:text-sm outline-none"
       >
         <option className="text-[10px] md:text-sm" selected disabled>
           {title}
