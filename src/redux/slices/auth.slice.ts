@@ -2,19 +2,26 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { authsAsyncThunk } from "../asyncThunk/auth.async"
 import { googleLogout } from "@react-oauth/google"
 
-export interface User {
-  name: string
+export interface iUserProfile {
+  avatar?: {
+    url: string
+    public_id: string
+  }
+  avtar?: string // Typo? Should it be "avatar"?
+  createdAt: string
+  createdBy: string
   email: string
-  id: string
   gender: string
-  avatar: any
-  role?: string | null
-  createdBy?: string | null
+  id: string
+  name: string
+  public_id?: string
+  role: string
+  updatedAt: string
 }
 
 interface AuthState {
   status: "idle" | "pending" | "fulfilled" | "rejected"
-  user: User | null
+  user: iUserProfile | null
   access_token: string | null
   refresh_token: string | null
 }

@@ -73,3 +73,16 @@ export interface iSVGImageProps {
   src: string
   title: string
 }
+
+export interface iUserProfile {
+  userName: string
+  userRole: string
+  userEmail: string
+  userGender: string
+}
+
+export interface iAvatarUploadProps {
+  userAvatar: any
+  handleFile: (e: any) => void
+  files: any
+}

@@ -91,6 +91,7 @@ const AccordionComponent: React.FC<Props> = ({
               </div>
 
               <img
+                loading="lazy"
                 className={`text-slate-50 transition-transform duration-200 ease-out ${
                   isEnter && "rotate-180"
                 }`}

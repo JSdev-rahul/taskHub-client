@@ -1,7 +1,8 @@
 import { debounce } from "lodash"
 import React, { useEffect, useState } from "react"
 import SVGImage from "./SvgRender"
-import { SearchSvgIcon } from "../assets"
+import { searchSvgGray, searchSvgWhite } from "../assets"
+import { useAppSelector } from "../hooks/utilityHooks"
 
 interface iSearchBoxComponent {
   setPageData: React.Dispatch<any>
@@ -13,7 +14,7 @@ const SearchBoxComponent: React.FC<iSearchBoxComponent> = ({
   pageData,
 }) => {
   const [searchText, setSearchText] = useState("")
-
+  const { darkMode } = useAppSelector((state) => state.uimode)
   useEffect(() => {
     const debouncedSearch = debounce((searchQuery) => {
       setPageData({ ...pageData, q: searchQuery })
@@ -43,7 +44,10 @@ const SearchBoxComponent: React.FC<iSearchBoxComponent> = ({
           placeholder="Search"
         />
         <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
-          <SVGImage src={SearchSvgIcon} title="searchIcon" />
+          <SVGImage
+            src={darkMode ? searchSvgWhite : searchSvgGray}
+            title="searchIcon"
+          />
         </div>
       </div>
     </>

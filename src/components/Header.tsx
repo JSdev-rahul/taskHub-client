@@ -71,6 +71,7 @@ const Header = () => {
               <div className="hidden sm:flex flex-row gap-2 justify-center items-center">
                 <div>
                   <img
+                    loading="lazy"
                     src={user?.avatar?.url}
                     alt="User Avatar"
                     className="w-10 h-10 object-fill object-center rounded-full justify-center "

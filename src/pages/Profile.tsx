@@ -1,4 +1,4 @@
-import UserProfileCard from "../components/Profile"
+import UserProfileCard from "../components/UserProfile"
 import { useAppSelector } from "../hooks/utilityHooks"
 
 const Profile = () => {
