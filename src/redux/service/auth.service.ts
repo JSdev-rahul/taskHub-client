@@ -29,4 +29,18 @@ export class AuthService {
     const url = API_ENDPOINT.GENERATE_ACCESS_TOKEN
     return sendRequest(url, METHODS.POST, payload)
   }
+
+  changePasswordService = (payload: any) => {
+    const url = API_ENDPOINT.CHANGE_PASSWORD
+    return sendRequest(url, METHODS.PATCH, payload)
+  }
+
+  sendEmailOtpService = (payload: any) => {
+    const url = API_ENDPOINT.SEND_OTP
+    return sendRequest(url, METHODS.POST, payload)
+  }
+  forgotPasswordService = (payload: any) => {
+    const url = API_ENDPOINT.FORGOT_PASSWORD
+    return sendRequest(url, METHODS.POST, payload)
+  }
 }

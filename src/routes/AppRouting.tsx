@@ -6,6 +6,8 @@ import Loading from "../components/Loading"
 import { ProtectedRoute } from "./index"
 import { routingConfig } from "./routes"
 import { Roles } from "../utils/constants"
+import ChangePassword from "../pages/changePassword"
+import ForgotPassword from "../pages/ForgotPassword"
 
 const MainLayout = lazy(() => import("../layout/mainLayout"))
 const SignInPage = lazy(() => import("../pages/SignIn"))
@@ -21,6 +23,14 @@ const AppRouting = ({ access_token }: { access_token: string | null }) => {
       <Routes>
         <Route path={routingConfig.login} element={<SignInPage />} />
         <Route path={routingConfig.signup} element={<SignUpPage />} />
+        <Route
+          path={routingConfig.changePassword}
+          element={<ChangePassword />}
+        />
+        <Route
+          path={routingConfig.forgotPassword}
+          element={<ForgotPassword />}
+        />
         <Route path="/" element={<MainLayout />}>
           <Route
             path={routingConfig.home}

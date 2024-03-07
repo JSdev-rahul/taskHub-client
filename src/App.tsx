@@ -8,7 +8,7 @@ function App() {
   useAxiosRequestInterceptor(access_token)
   useAxiosResponseInterceptor()
   return (
-    <div className={darkMode ? "dark bg-[#121212] h-full" : ""}>
+    <div className={darkMode ? "dark bg-[#121212] h-screen" : ""}>
       <AppRouting access_token={access_token} />
     </div>
   )

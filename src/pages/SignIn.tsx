@@ -177,6 +177,24 @@ const SignIn = () => {
                     </div>
                   </div>
                   <Button label="Sign In" disabled={isDisabled}></Button>
+                  <div className="flex justify-between items-center sm:mt-[-15px]">
+                    <div>
+                      <button
+                        onClick={() => navigate(routingConfig.changePassword)}
+                        className="text-xs dark:text-white text-black underline"
+                      >
+                        Change Password
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => navigate(routingConfig.forgotPassword)}
+                        className="text-xs dark:text-white text-black underline"
+                      >
+                        Forgot Password
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

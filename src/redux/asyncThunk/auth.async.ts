@@ -78,5 +78,38 @@ class AuthAsyncThunk {
       }
     }
   )
+  changePasswordAsyncThunk = createAsyncThunk(
+    "changePasswordAsyncThunk",
+    async (payload: any, { rejectWithValue }) => {
+      try {
+        const response = await this.authService.changePasswordService(payload)
+        return response
+      } catch (err) {
+        return rejectWithValue(err)
+      }
+    }
+  )
+  sendOTPAsyncThunk = createAsyncThunk(
+    "sendOTPAsyncThunk",
+    async (payload: any, { rejectWithValue }) => {
+      try {
+        const response = await this.authService.sendEmailOtpService(payload)
+        return response
+      } catch (err) {
+        return rejectWithValue(err)
+      }
+    }
+  )
+  forgotPasswordAsyncThunk = createAsyncThunk(
+    "sendOTPAsyncThunk",
+    async (payload: any, { rejectWithValue }) => {
+      try {
+        const response = await this.authService.forgotPasswordService(payload)
+        return response
+      } catch (err) {
+        return rejectWithValue(err)
+      }
+    }
+  )
 }
 export const authsAsyncThunk = new AuthAsyncThunk()

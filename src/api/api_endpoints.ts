@@ -3,9 +3,11 @@ const API_CONFIG = {
   LOGIN: "/login",
   GOOGLE_LOGIN: "/login/google-auth",
   CHANGE_PASSWORD: "/password/update-password",
+  FORGOT_PASSWORD: "/password/forgot-password",
 
+  SEND_OTP: "/send-otp",
   VERIFY_OTP: "/login/verify-otp",
-  REGENRATE_OTP: "/login/regenerate-otp",
+  REGENRATE_OTP: "/login/regnrate-otp",
 
   GENERATE_ACCESS_TOKEN: "/token/generate-access-token",
   GET_ALL_TODOS: "/todos/:id",
@@ -24,8 +26,11 @@ export const API_ENDPOINT = {
   SIGNUP: API_CONFIG.SIGNUP,
   LOGIN: API_CONFIG.LOGIN,
   GOOGLE_LOGIN: API_CONFIG.GOOGLE_LOGIN,
+  CHANGE_PASSWORD: API_CONFIG.CHANGE_PASSWORD,
+  FORGOT_PASSWORD: API_CONFIG.FORGOT_PASSWORD,
 
   // OTP Verification Endpoints
+  SEND_OTP: API_CONFIG.SEND_OTP,
   VERIFY_OTP: API_CONFIG.VERIFY_OTP,
   REGENRATE_OTP: API_CONFIG.REGENRATE_OTP,
 
