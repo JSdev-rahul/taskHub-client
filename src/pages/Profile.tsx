@@ -1,5 +1,6 @@
-import UserProfileCard from "../components/UserProfile"
+import { lazy } from "react"
 import { useAppSelector } from "../hooks/utilityHooks"
+const UserProfileCard = lazy(() => import("../components/UserProfile"))
 
 const Profile = () => {
   const { user } = useAppSelector((state) => state.auth)

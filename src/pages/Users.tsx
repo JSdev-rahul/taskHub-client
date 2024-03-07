@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { lazy, useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
 import { usersAsyncThunk } from "../redux/asyncThunk/user.asyns"
 import moment from "moment"
-import SearchBoxComponent from "../components/SearchBox"
 import ResponsivePagination from "react-responsive-pagination"
 import "react-responsive-pagination/themes/classic.css"
 import Swal from "sweetalert2"
-import ModelComponent from "../components/ModelComponent"
-import SignUp from "./SignUp"
 import deleteConfirmationPopup from "../utils/deleteConfirmationPop"
-import DropdownMenu from "../components/DropDown"
 import { iUserPaginationQuery } from "../utils/interfaces"
 import {
   TableColumnInfo,
@@ -17,7 +13,12 @@ import {
   userTableFilterOptions,
 } from "../utils/constants"
 import { activeSvgIcon, filterIcon, plusSvgIcon } from "../assets"
-import SVGImage from "../components/SvgRender"
+
+const DropdownMenu = lazy(() => import("../components/DropDown"))
+const SVGImage = lazy(() => import("../components/SvgRender"))
+const SignUp = lazy(() => import("./SignUp"))
+const ModelComponent = lazy(() => import("../components/ModelComponent"))
+const SearchBoxComponent = lazy(() => import("../components/SearchBox"))
 
 const Users = () => {
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)

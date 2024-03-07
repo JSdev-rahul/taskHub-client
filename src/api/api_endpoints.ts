@@ -2,6 +2,7 @@ const API_CONFIG = {
   SIGNUP: "/users",
   LOGIN: "/login",
   GOOGLE_LOGIN: "/login/google-auth",
+  CHANGE_PASSWORD: "/password/update-password",
 
   VERIFY_OTP: "/login/verify-otp",
   REGENRATE_OTP: "/login/regenerate-otp",

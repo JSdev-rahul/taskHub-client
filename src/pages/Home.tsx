@@ -78,7 +78,7 @@ const Home = () => {
       </ModelComponent>
       <div className="mt-[50px] md:mt-16">
         <div className="flex flex-col md:flex-row w-full md:justify-center sm:items-center ">
-          <div className="flex flex-col sm:flex-row sm:justify-center sm:items-end gap-4 sm:gap-2 mx-2 mt-4">
+          <div className="flex flex-col sm:flex-row sm:justify-center sm:items-end gap-4 sm:gap-2 mt-4">
             <div className="w-full sm:w-[50%] ">
               <SelectComponent
                 value={pageData.priority}

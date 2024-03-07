@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useState } from "react"
+import React, { lazy, memo, useEffect, useState } from "react"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { usersAsyncThunk } from "../redux/asyncThunk/user.asyns"
 import { objectToFormData } from "../utils/formDataConvert"
 import { iUserProfile, updateProfileReducer } from "../redux/slices/auth.slice"
-import AvatarUpload from "./AvatarUpload"
-import UserInfoCard from "./UserInfoCard"
+const AvatarUpload = lazy(() => import("./AvatarUpload"))
+const UserInfoCard = lazy(() => import("./UserInfoCard"))
 
 const UserProfileCard: React.FC<iUserProfile | any> = ({ user }) => {
   const dispatch = useAppDispatch()
