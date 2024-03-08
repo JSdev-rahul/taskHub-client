@@ -118,3 +118,10 @@ export const selectRowOptions: SelectOption[] = [
   { value: 10, label: "10" },
   { value: 25, label: "25" },
 ]
+
+export enum RequestStatus {
+  Idle = "idle",
+  Pending = "pending",
+  Fulfilled = "fulfilled",
+  Rejected = "rejected",
+}

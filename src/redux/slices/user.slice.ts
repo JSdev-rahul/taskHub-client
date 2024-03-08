@@ -1,14 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { usersAsyncThunk } from "../asyncThunk/user.asyns"
+import { RequestStatus } from "../../utils/constants"
 
 interface TodoState {
-  status: "idle" | "pending" | "fulfilled" | "rejected"
+  status:
+    | RequestStatus.Idle
+    | RequestStatus.Pending
+    | RequestStatus.Fulfilled
+    | RequestStatus.Rejected
   users: any
   count: number
 }
 
 const initialState: TodoState = {
-  status: "idle",
+  status: RequestStatus.Idle,
   users: [],
   count: 0,
 }
@@ -19,18 +24,18 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(usersAsyncThunk.getAllUsers.pending, (state) => {
-      state.status = "pending"
+      state.status = RequestStatus.Pending
     })
     builder.addCase(
       usersAsyncThunk.getAllUsers.fulfilled,
       (state, action: PayloadAction<{ data: any }>) => {
-        state.status = "fulfilled"
+        state.status = RequestStatus.Fulfilled
         state.count = action.payload.data.count
         state.users = action.payload.data.result // Access user property from payload
       }
     )
     builder.addCase(usersAsyncThunk.getAllUsers.rejected, (state) => {
-      state.status = "rejected"
+      state.status = RequestStatus.Rejected
     })
   },
 })

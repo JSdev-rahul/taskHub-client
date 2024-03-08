@@ -13,7 +13,7 @@ export class UsersService {
     const url = replaceUrl(API_ENDPOINT.DELETE_USER, { id })
     return sendRequest(url, METHODS.DELETE)
   }
-  updateAvatarService = (payload: any) => {
+  updateAvatarService = (payload: FormData) => {
     const url = API_ENDPOINT.UPDATE_AVATAR
     return sendRequest(url, METHODS.POST, payload)
   }

@@ -33,7 +33,7 @@ class UsersAsyncThunk {
   )
   updateAvatarAsyncThunk = createAsyncThunk(
     "updateAvatarAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: FormData, { rejectWithValue }) => {
       try {
         const response = await this.usersService.updateAvatarService(payload)
         return response

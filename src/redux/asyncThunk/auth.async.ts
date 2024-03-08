@@ -1,9 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { AuthService } from "../service/auth.service"
-import { iSignInForm } from "../../utils/interfaces"
+import {
+  iChangePasswordForm,
+  iForgotPasswordForm,
+  iSignInForm,
+} from "../../utils/interfaces"
 
-export interface RefreshTokenPayload {
+export interface iRefreshTokenPayload {
   refreshToken: string | null
+}
+export interface iVerifyOtp {
+  email: string
+  otp: string
 }
 class AuthAsyncThunk {
   private authService: AuthService
@@ -13,8 +21,8 @@ class AuthAsyncThunk {
   }
 
   signUpAsyncThunk = createAsyncThunk(
-    "userSignup",
-    async (payload: any, { rejectWithValue }) => {
+    "signUpAsyncThunk",
+    async (payload: FormData, { rejectWithValue }) => {
       try {
         const response = await this.authService.signUpService(payload)
         return response
@@ -23,11 +31,11 @@ class AuthAsyncThunk {
       }
     }
   )
-  signInAsyncThunk = createAsyncThunk(
-    "loginAsync",
+  LogInAsyncThunk = createAsyncThunk(
+    "LogInAsyncThunk",
     async (payload: iSignInForm, { rejectWithValue }) => {
       try {
-        const response = await this.authService.signInService(payload)
+        const response = await this.authService.logInService(payload)
         return response
       } catch (err) {
         return rejectWithValue(err)
@@ -36,7 +44,7 @@ class AuthAsyncThunk {
   )
   verifyOtpAsyncThunk = createAsyncThunk(
     "verifyOtpAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: iVerifyOtp, { rejectWithValue }) => {
       try {
         const response = await this.authService.verifyOtpService(payload)
         return response
@@ -47,7 +55,7 @@ class AuthAsyncThunk {
   )
   regenerateOTPAsyncThunk = createAsyncThunk(
     "regenerateOTPAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: { email: string }, { rejectWithValue }) => {
       try {
         const response = await this.authService.regenerateOTPService(payload)
         return response
@@ -58,7 +66,7 @@ class AuthAsyncThunk {
   )
   googleAuthAsyncThunk = createAsyncThunk(
     "googleAuthAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: { Gtoken: string }, { rejectWithValue }) => {
       try {
         const response = await this.authService.googleAuthService(payload)
         return response
@@ -69,7 +77,7 @@ class AuthAsyncThunk {
   )
   genrateNewTokenAsyncThunk = createAsyncThunk(
     "genrateNewTokenAsyncThunk",
-    async (payload: RefreshTokenPayload, { rejectWithValue }) => {
+    async (payload: iRefreshTokenPayload, { rejectWithValue }) => {
       try {
         const response = await this.authService.genrateNewTokenService(payload)
         return response
@@ -80,7 +88,7 @@ class AuthAsyncThunk {
   )
   changePasswordAsyncThunk = createAsyncThunk(
     "changePasswordAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: iChangePasswordForm, { rejectWithValue }) => {
       try {
         const response = await this.authService.changePasswordService(payload)
         return response
@@ -91,9 +99,9 @@ class AuthAsyncThunk {
   )
   sendOTPAsyncThunk = createAsyncThunk(
     "sendOTPAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: iForgotPasswordForm, { rejectWithValue }) => {
       try {
-        const response = await this.authService.sendEmailOtpService(payload)
+        const response = await this.authService.sendOTPService(payload)
         return response
       } catch (err) {
         return rejectWithValue(err)
@@ -102,7 +110,7 @@ class AuthAsyncThunk {
   )
   forgotPasswordAsyncThunk = createAsyncThunk(
     "sendOTPAsyncThunk",
-    async (payload: any, { rejectWithValue }) => {
+    async (payload: iForgotPasswordForm, { rejectWithValue }) => {
       try {
         const response = await this.authService.forgotPasswordService(payload)
         return response

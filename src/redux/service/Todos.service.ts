@@ -4,7 +4,7 @@ import { sendRequest } from "../constant/fetchApiHandler"
 import { METHODS, replaceUrl } from "../constant/redux.constant"
 
 export class TodosService {
-  getAllUserTodos = (payload: iToDoPageData) => {
+  getAllTodosService = (payload: iToDoPageData) => {
     const { id, ...params } = payload
     const url = replaceUrl(API_ENDPOINT.GET_ALL_TODOS, {
       id,

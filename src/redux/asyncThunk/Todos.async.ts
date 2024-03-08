@@ -9,11 +9,11 @@ class TodosAsyncThunk {
     this.todosService = new TodosService()
   }
 
-  getUserAllTodos = createAsyncThunk(
-    "getAllTodos",
+  getAllTodosAsyncThunk = createAsyncThunk(
+    "getAllTodosAsyncThunk",
     async (payload: iToDoPageData, { rejectWithValue }) => {
       try {
-        const response = await this.todosService.getAllUserTodos(payload)
+        const response = await this.todosService.getAllTodosService(payload)
         return response
       } catch (err) {
         return rejectWithValue(err)

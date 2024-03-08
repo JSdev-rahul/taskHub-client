@@ -32,7 +32,7 @@ const Home = () => {
   })
 
   const getAllUserTodoshandler = () => {
-    dispatch(todosAsyncThunk.getUserAllTodos({ ...pageData }))
+    dispatch(todosAsyncThunk.getAllTodosAsyncThunk({ ...pageData }))
   }
   const deleteToDoHandler = (id: string) => {
     console.log(id)

@@ -19,6 +19,7 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview"
 
 // Import the plugin styles
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+import { iSignUpForm } from "../utils/interfaces"
 
 registerPlugin(FilePondPluginFileValidateType, FilePondPluginImagePreview)
 interface iSignUpProps {
@@ -40,7 +41,7 @@ const SignUp: React.FC<iSignUpProps> = ({ isCreateNewUser }) => {
     },
   }
 
-  const [initialValues, setInitialValues] = useState({
+  const [initialValues, setInitialValues] = useState<iSignUpForm>({
     name: "",
     gender: "",
     email: "",
@@ -50,7 +51,7 @@ const SignUp: React.FC<iSignUpProps> = ({ isCreateNewUser }) => {
     createdBy: isCreateNewUser ? user?.id : "user",
   })
 
-  const formik = useFormik({
+  const formik = useFormik<iSignUpForm>({
     initialValues,
     validateOnBlur: true,
     validateOnMount: false,

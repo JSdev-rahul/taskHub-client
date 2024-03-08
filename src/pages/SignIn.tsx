@@ -32,7 +32,7 @@ const SignIn = () => {
     onSubmit: (values) => {
       clearInterval(timer)
       setIsDisabled(true)
-      dispatch(authsAsyncThunk.signInAsyncThunk(values))
+      dispatch(authsAsyncThunk.LogInAsyncThunk(values))
         .unwrap()
         .then(() => {
           setIsOtpPage(true)
@@ -97,7 +97,7 @@ const SignIn = () => {
             navigate(routingConfig.home)
           }
         })
-        .catch()
+        .catch(() => {})
     }
   }
 

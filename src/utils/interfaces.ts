@@ -35,3 +35,26 @@ export interface iUserPaginationQuery {
   q: string
   filter: string | null
 }
+
+export interface iSignUpForm {
+  name: string
+  gender: string
+  email: string
+  password: string
+  avatar: string
+  role: string
+  createdBy: string | undefined
+}
+
+export interface iChangePasswordForm {
+  email: string
+  oldPassword: string
+  newPassword: string
+  confirmPassword: string
+}
+
+export interface iForgotPasswordForm {
+  email: string
+  newPassword: string
+  confirmPassword: string
+}

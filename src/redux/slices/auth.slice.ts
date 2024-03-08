@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { authsAsyncThunk } from "../asyncThunk/auth.async"
 import { googleLogout } from "@react-oauth/google"
+import { RequestStatus } from "../../utils/constants"
 
 export interface iUserProfile {
   avatar?: {
@@ -20,14 +21,18 @@ export interface iUserProfile {
 }
 
 interface AuthState {
-  status: "idle" | "pending" | "fulfilled" | "rejected"
+  status:
+    | RequestStatus.Idle
+    | RequestStatus.Pending
+    | RequestStatus.Fulfilled
+    | RequestStatus.Rejected
   user: iUserProfile | null
   access_token: string | null
   refresh_token: string | null
 }
 
 const initialState: AuthState = {
-  status: "idle",
+  status: RequestStatus.Idle,
   access_token: null,
   refresh_token: null,
   user: null,
@@ -41,7 +46,7 @@ const authSlice = createSlice({
       state.access_token = null
       state.refresh_token = null
       state.user = null
-      state.status = "idle"
+      state.status = RequestStatus.Pending
       localStorage.removeItem("persist:root")
       googleLogout()
     },
@@ -55,47 +60,47 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(authsAsyncThunk.verifyOtpAsyncThunk.pending, (state) => {
-      state.status = "pending"
+      state.status = RequestStatus.Pending
     })
     builder.addCase(
       authsAsyncThunk.verifyOtpAsyncThunk.fulfilled,
       (state, action: PayloadAction<{ data: AuthState }>) => {
-        state.status = "fulfilled"
+        state.status = RequestStatus.Fulfilled
         state.user = action.payload.data.user // Access user property from payload
         state.access_token = action.payload.data.access_token
         state.refresh_token = action.payload.data.refresh_token
       }
     )
     builder.addCase(authsAsyncThunk.verifyOtpAsyncThunk.rejected, (state) => {
-      state.status = "rejected"
+      state.status = RequestStatus.Rejected
     })
 
     builder.addCase(authsAsyncThunk.googleAuthAsyncThunk.pending, (state) => {
-      state.status = "pending"
+      state.status = RequestStatus.Pending
     })
     builder.addCase(
       authsAsyncThunk.googleAuthAsyncThunk.fulfilled,
       (state, action: PayloadAction<{ data: AuthState }>) => {
-        state.status = "fulfilled"
+        state.status = RequestStatus.Fulfilled
         state.user = action.payload.data.user // Access user property from payload
         state.access_token = action.payload.data.access_token
         state.refresh_token = action.payload.data.refresh_token
       }
     )
     builder.addCase(authsAsyncThunk.googleAuthAsyncThunk.rejected, (state) => {
-      state.status = "rejected"
+      state.status = RequestStatus.Rejected
     })
 
     builder.addCase(
       authsAsyncThunk.genrateNewTokenAsyncThunk.pending,
       (state) => {
-        state.status = "pending"
+        state.status = RequestStatus.Pending
       }
     )
     builder.addCase(
       authsAsyncThunk.genrateNewTokenAsyncThunk.fulfilled,
       (state, action: PayloadAction<{ data: AuthState }>) => {
-        state.status = "fulfilled"
+        state.status = RequestStatus.Fulfilled
         state.access_token = action.payload.data.access_token
         state.refresh_token = action.payload.data.refresh_token
       }
@@ -103,7 +108,7 @@ const authSlice = createSlice({
     builder.addCase(
       authsAsyncThunk.genrateNewTokenAsyncThunk.rejected,
       (state) => {
-        state.status = "rejected"
+        state.status = RequestStatus.Rejected
       }
     )
   },

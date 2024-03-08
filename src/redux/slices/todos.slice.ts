@@ -1,15 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { todosAsyncThunk } from "../asyncThunk/Todos.async"
-import { TodoItem } from "../../components/Accordion"
+import { RequestStatus } from "../../utils/constants"
 
 interface TodoState {
-  status: "idle" | "pending" | "fulfilled" | "rejected"
+  status:
+    | RequestStatus.Idle
+    | RequestStatus.Pending
+    | RequestStatus.Fulfilled
+    | RequestStatus.Rejected
   allToDos: any
   count: number
 }
 
 const initialState: TodoState = {
-  status: "idle",
+  status: RequestStatus.Idle,
   allToDos: [],
   count: 0,
 }
@@ -19,14 +23,14 @@ const todosSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(todosAsyncThunk.getUserAllTodos.pending, (state) => {
-      state.status = "pending"
+    builder.addCase(todosAsyncThunk.getAllTodosAsyncThunk.pending, (state) => {
+      state.status = RequestStatus.Pending
     })
     builder.addCase(
-      todosAsyncThunk.getUserAllTodos.fulfilled,
+      todosAsyncThunk.getAllTodosAsyncThunk.fulfilled,
       (state, action: PayloadAction<{ data: any }>) => {
         if (action.payload) {
-          state.status = "fulfilled"
+          state.status = RequestStatus.Fulfilled
           state.count = action.payload.data?.count
           state.allToDos = action.payload.data?.result // Access user property from payload
         } else {
@@ -36,8 +40,8 @@ const todosSlice = createSlice({
       }
     )
 
-    builder.addCase(todosAsyncThunk.getUserAllTodos.rejected, (state) => {
-      state.status = "rejected"
+    builder.addCase(todosAsyncThunk.getAllTodosAsyncThunk.rejected, (state) => {
+      state.status = RequestStatus.Rejected
     })
   },
 })

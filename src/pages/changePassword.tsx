@@ -6,19 +6,20 @@ import { InputField } from "../components/Input"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { authsAsyncThunk } from "../redux/asyncThunk/auth.async"
 import { changePasswordSchema } from "../validator/changePasswordSchema"
+import { iChangePasswordForm } from "../utils/interfaces"
 
 const ChangePassword = () => {
   const [isDisabled, setIsDisabled] = useState(false)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [initialValues, setInitialValues] = useState({
+  const [initialValues, setInitialValues] = useState<iChangePasswordForm>({
     email: "",
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
   })
 
-  const formik = useFormik({
+  const formik = useFormik<iChangePasswordForm>({
     initialValues,
     validationSchema: changePasswordSchema,
     validateOnChange: false,

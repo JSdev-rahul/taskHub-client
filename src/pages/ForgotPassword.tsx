@@ -11,11 +11,12 @@ import {
   emailSchema,
   newPasswordSchema,
 } from "../validator/changePasswordSchema"
+import { iForgotPasswordForm } from "../utils/interfaces"
 const ForgotPassword = () => {
   const navigate = useNavigate()
   const [isDisabled, setIsDisabled] = useState(false)
   const dispatch = useAppDispatch()
-  const [initialValues, setInitialValues] = useState({
+  const [initialValues, setInitialValues] = useState<iForgotPasswordForm>({
     email: "",
     newPassword: "",
     confirmPassword: "",
@@ -26,7 +27,7 @@ const ForgotPassword = () => {
   const [isOtpPage, setIsOtpPage] = useState<boolean>(false)
   const [toggleNewPasswordFiled, setToggleNewPasswordFiled] = useState(false)
 
-  const formik = useFormik({
+  const formik = useFormik<iForgotPasswordForm>({
     initialValues,
     validationSchema: toggleNewPasswordFiled ? newPasswordSchema : emailSchema,
     validateOnChange: false,
