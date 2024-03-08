@@ -1,3 +1,4 @@
+/* eslint-disable-next-line padded-blocks */
 import { useAppSelector } from "./hooks/utilityHooks"
 import AppRouting from "./routes/AppRouting"
 import useAxiosResponseInterceptor from "./api/axiosResponseInterceptor"

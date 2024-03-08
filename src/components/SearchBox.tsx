@@ -26,7 +26,7 @@ const SearchBoxComponent: React.FC<iSearchBoxComponent> = ({
 
     // Cleanup function to cancel debounce on component unmount
     return () => debouncedSearch.cancel()
-  }, [searchText])
+  }, [searchText, pageData, setPageData])
 
   return (
     <>

@@ -1,3 +1,4 @@
+/* eslint-disable-next-line padded-blocks */
 import React, { useEffect, useState } from "react"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
 import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
@@ -46,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllUserTodoshandler()
-  }, [pageData])
+  }, [pageData, getAllUserTodoshandler])
 
   useEffect(() => {
     if (editToDoItems) {

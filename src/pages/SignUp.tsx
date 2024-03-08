@@ -60,10 +60,10 @@ const SignUp: React.FC<iSignUpProps> = ({ isCreateNewUser }) => {
     onSubmit: (values) => {
       setIsDisabled(true)
       const formData = objectToFormData(values)
-      const entries = formData.entries()
-      for (let entry = entries.next(); !entry.done; entry = entries.next()) {
-        const [key, value] = entry.value
-      }
+      // const entries = formData.entries()
+      // for (let entry = entries.next(); !entry.done; entry = entries.next()) {
+      //   const [key, value] = entry.value
+      // }
 
       dispatch(authsAsyncThunk.signUpAsyncThunk(formData))
         .unwrap()

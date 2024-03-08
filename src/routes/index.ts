@@ -23,6 +23,6 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ({
       navigate(routingConfig.login)
     } else {
     }
-  }, [access_token, navigate])
+  }, [access_token, navigate, user?.role, authorized])
   return access_token ? children : null
 }

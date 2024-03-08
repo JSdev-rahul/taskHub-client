@@ -40,14 +40,14 @@ const OtpComponent: React.FC<iOtpComponentProps> = ({
             )}
           />
         </div>
-        {time == 0 ? (
+        {time === 0 ? (
           <p className="text-sm text-blue-600">Click to regnarte new otp</p>
         ) : (
           <h1>Time:{formattedTime}</h1>
         )}
         <div className="flex mt-4">
           <button
-            disabled={time == 0 ? false : true}
+            disabled={time === 0 ? false : true}
             className="px-4 text-xs font-semibold disabled:cursor-not-allowed disabled:bg-slate-400 py-2 bg-blue-500 text-white rounded mr-2"
             onClick={() => handleRegenerateOTP()}
           >
