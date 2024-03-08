@@ -51,7 +51,7 @@ const SignIn = () => {
       setIsOtpPage(false) // Reset isLoggedIn state
       setTime(180) // Reset timer
     }
-  }, [timer])
+  }, [])
 
   const handleOtpVerification = () => {
     const email = formik.values.email

@@ -23,7 +23,7 @@ const Home = () => {
   const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<number>(0)
-  const [pageData, setPageData] = useState<iToDoPageData>({
+  const [pageData, setPageData] = useState({
     page: 1,
     limit: 5,
     q: "",
