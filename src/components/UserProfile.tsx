@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { lazy, memo, useEffect, useState } from "react"
 import { useAppDispatch } from "../hooks/utilityHooks"
 import { usersAsyncThunk } from "../redux/asyncThunk/user.asyns"

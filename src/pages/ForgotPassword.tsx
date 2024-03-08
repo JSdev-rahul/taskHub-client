@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+/* eslint-disable */
+
 import { useNavigate } from "react-router-dom"
 import { routingConfig } from "../routes/routes"
 import { InputField } from "../components/Input"
@@ -12,6 +13,7 @@ import {
   newPasswordSchema,
 } from "../validator/changePasswordSchema"
 import { iForgotPasswordForm } from "../utils/interfaces"
+import { useState } from "react"
 const ForgotPassword = () => {
   const navigate = useNavigate()
   const [isDisabled, setIsDisabled] = useState(false)

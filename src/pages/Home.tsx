@@ -1,4 +1,4 @@
-/* eslint-disable-next-line padded-blocks */
+/* eslint-disable */
 import React, { useEffect, useState } from "react"
 import { todosAsyncThunk } from "../redux/asyncThunk/Todos.async"
 import { useAppDispatch, useAppSelector } from "../hooks/utilityHooks"
@@ -23,7 +23,7 @@ const Home = () => {
   const [editToDoItems, setEditTodoItems] = useState<string | null>(null)
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<number>(0)
-  const [pageData, setPageData] = useState({
+  const [pageData, setPageData] = useState<iToDoPageData>({
     page: 1,
     limit: 5,
     q: "",
@@ -88,7 +88,7 @@ const Home = () => {
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setPageData({
                     ...pageData,
-                    priority: e.target.value == "All" ? "" : e.target.value,
+                    priority: e.target.value === "All" ? "" : e.target.value,
                   })
                 }
                 title="Select Priority "

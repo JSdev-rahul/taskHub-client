@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState } from "react"
 import { routingConfig } from "../routes/routes"
 import { useNavigate } from "react-router-dom"

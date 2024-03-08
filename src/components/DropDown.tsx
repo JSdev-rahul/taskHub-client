@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu"
 import "@szhsin/react-menu/dist/index.css"
 import { iDropDownMenuProps } from "../utils/componentProps"
@@ -27,7 +26,7 @@ const DropdownMenu: React.FC<iDropDownMenuProps> = ({
       align="center"
       // theming={darkMode ? "dark" : "light"} // Change theme based on dark mode
       onItemClick={(e) =>
-        setPageData({ ...pageData, filter: e.value == "all" ? "" : e.value })
+        setPageData({ ...pageData, filter: e.value === "all" ? "" : e.value })
       }
       menuButton={<MenuButton>{title}</MenuButton>}
     >

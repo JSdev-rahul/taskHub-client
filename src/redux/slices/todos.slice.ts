@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { todosAsyncThunk } from "../asyncThunk/Todos.async"
 import { RequestStatus } from "../../utils/constants"

@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion"
 import { deleteSVGIcon, downSignSVGIcon, editSvgIcon } from "../assets"
 import { useAppDispatch } from "../hooks/utilityHooks"

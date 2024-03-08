@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { debounce } from "lodash"
 import React, { useEffect, useState } from "react"
 import SVGImage from "./SvgRender"

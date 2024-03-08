@@ -13,7 +13,7 @@ const Header = () => {
   const { darkMode } = useAppSelector((state) => state.uimode)
   const { user } = useAppSelector((state) => state.auth)
 
-  const menuItems = user?.role == Roles.ADMIN ? adminMenuItem : usersMenuItem
+  const menuItems = user?.role === Roles.ADMIN ? adminMenuItem : usersMenuItem
 
   return (
     <header className="fixed top-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0 dark:bg-black">
@@ -59,13 +59,12 @@ const Header = () => {
               })}
 
               <div className="sm:hidden">
-                <a
+                <button
                   onClick={() => dispatch(handleLogoutReducer())}
                   className="flex items-center gap-x-2 font-medium text-white/[.8] hover:text-white sm:border-s sm:border-white/[.3] sm:my-6 sm:ps-6"
-                  href="#"
                 >
                   LogOut
-                </a>
+                </button>
               </div>
 
               <div className="hidden sm:flex flex-row gap-2 justify-center items-center">
@@ -87,13 +86,12 @@ const Header = () => {
                   </span>
                 </div>
 
-                <a
+                <button
                   onClick={() => dispatch(handleLogoutReducer())}
                   className="flex items-center gap-x-2 font-medium text-white/[.8] hover:text-white sm:border-s sm:border-white/[.3] sm:my-6 sm:ps-6"
-                  href="#"
                 >
                   LogOut
-                </a>
+                </button>
               </div>
             </div>
           </div>
