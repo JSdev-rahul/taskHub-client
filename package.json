@@ -44,7 +44,6 @@
     "react-responsive-modal": "^6.4.2",
     "react-responsive-pagination": "^2.4.1",
     "react-router-dom": "^6.22.1",
-    "react-scripts": "5.0.1",
     "react-svg": "^16.1.33",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
@@ -56,7 +55,6 @@
   },
   "noESLint": true,
   "scripts": {
-    "proxy": "http://localhost:3001",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -82,6 +80,7 @@
   },
   "devDependencies": {
     "@types/react-otp-input": "^2.0.5",
+    "react-scripts": "^5.0.1",
     "tailwindcss": "^3.4.1"
   }
 }
