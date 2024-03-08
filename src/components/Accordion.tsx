@@ -46,7 +46,7 @@ const AccordionComponent: React.FC<Props> = ({
                   e.stopPropagation()
                   dispatch(
                     todosAsyncThunk.updateTodoAsyncThunk({
-                      id,
+                      _id: id,
                       completed: item.completed ? false : true,
                     })
                   )

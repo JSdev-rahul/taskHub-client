@@ -106,3 +106,15 @@ export const userTableFilterOptions: iUserTableFilterOptions[] = [
   { label: UserTableFilter.USER, value: UserTableFilter.USER },
   { label: UserTableFilter.ADMIN, value: UserTableFilter.ADMIN },
 ]
+
+interface SelectOption {
+  value: number
+  label: string
+}
+
+// Select options constant
+export const selectRowOptions: SelectOption[] = [
+  { value: 5, label: "5" },
+  { value: 10, label: "10" },
+  { value: 25, label: "25" },
+]

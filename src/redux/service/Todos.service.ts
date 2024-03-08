@@ -17,6 +17,7 @@ export class TodosService {
   }
 
   deleteTodoService = (id: string | null) => {
+    console.log(id)
     const url = replaceUrl(API_ENDPOINT.DELETE_TODO, {
       id,
     })
@@ -31,7 +32,6 @@ export class TodosService {
 
   updateTodoService = (payload: iTodoFormData) => {
     const { _id, ...data }: any = payload
-    console.log(_id)
     const url = replaceUrl(API_ENDPOINT.UPDATE_TODO, { id: _id })
     return sendRequest(url, METHODS.PATCH, data)
   }

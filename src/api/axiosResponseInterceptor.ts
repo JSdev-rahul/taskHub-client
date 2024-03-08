@@ -35,7 +35,7 @@ const useAxiosResponseInterceptor = () => {
             .then(() => {
               return
             })
-            .catch((err: any) => {
+            .catch(() => {
               dispatch(handleLogoutReducer())
               navigate(routingConfig.login)
             })

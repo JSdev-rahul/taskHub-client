@@ -31,7 +31,7 @@ const ChangePassword = () => {
         .then(() => {
           navigate(routingConfig.login)
         })
-        .catch()
+        .catch(() => {})
         .finally(() => {
           setIsDisabled(false)
         })
