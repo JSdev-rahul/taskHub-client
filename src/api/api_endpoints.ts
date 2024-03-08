@@ -5,7 +5,7 @@ const API_CONFIG = {
   CHANGE_PASSWORD: "/password/update-password",
   FORGOT_PASSWORD: "/password/forgot-password",
 
-  SEND_OTP: "/send-otp",
+  SEND_OTP: "/otp/send-otp",
   VERIFY_OTP: "/login/verify-otp",
   REGENRATE_OTP: "/login/regnrate-otp",
 
