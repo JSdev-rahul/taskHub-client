@@ -47,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllUserTodoshandler()
-  }, [pageData, getAllUserTodoshandler])
+  }, [pageData])
 
   useEffect(() => {
     if (editToDoItems) {
