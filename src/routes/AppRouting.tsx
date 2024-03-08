@@ -1,7 +1,7 @@
 // AppRouting.tsx
 
 import { Suspense, lazy } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import Loading from "../components/Loading"
 import { ProtectedRoute } from "./index"
 import { routingConfig } from "./routes"
@@ -21,6 +21,7 @@ const AppRouting = ({ access_token }: { access_token: string | null }) => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="*" element={<Navigate to={routingConfig.login} />} />{" "}
         <Route path={routingConfig.login} element={<SignInPage />} />
         <Route path={routingConfig.signup} element={<SignUpPage />} />
         <Route
