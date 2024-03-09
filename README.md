@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# TaskHub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TaskHub is a task management web application built with React.js for the frontend. It allows users to manage their tasks, login via Gmail, password, or Google login, update their profiles, and more.
 
-## Available Scripts
+## Live URL
 
-In the project directory, you can run:
+The project is currently live and accessible at [https://taskhub-web.netlify.app](https://taskhub-web.netlify.app). Feel free to visit the site to explore its features and functionalities!
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Task Management:** Add tasks with details, including title, description, due date, etc.
+- **Login via Password:** Users can also log in using their email address and password.
+- **Google Login:** Users have the option to log in using their Google accounts.
+- **Profile Update:** Users can update their profiles, including uploading profile pictures.
+- **Responsive Design:** TaskHub is responsive and optimized for various devices, including mobile phones and tablets.
+- **Image Upload:** Users can upload images for their tasks, which are stored securely on the cloud.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To run the project locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:https://github.com/JSdev-rahul/taskHub-client.git
 
-### `npm run build`
+## Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Node Version
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project was developed using **Node.js version 18.7.0**.
 
-### `npm run eject`
+Use the package manager [npm] to install all dependencies.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Node Version
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This project was developed using **Node.js version 18.7.0**.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Start development server
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Open the browser and visit `http://localhost:3000` to view the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Folder Structure
+
+The project structure is organized as follows:
+
+- `public/`: Contains static assets and HTML template files.
+- `src/`: Contains the source code of the React application.
+  - `components/`: Contains reusable UI components.
+  - `pages/`: Contains individual pages/components of the application.
+  - `utils/`: Contains utility/helper functions.
+  - `App.js`: Main entry point of the application.
+  - `index.js`: Renders the root component into the DOM.
+
+## Language Used
+
+- **TypeScript:** Superset of JavaScript that adds static typing and other features to enhance developer productivity and code quality. TypeScript provides better tooling, error checking, and code maintainability compared to plain JavaScript, especially in large-scale projects. It helps catch errors during development and provides better IDE support, making it easier to refactor and maintain codebases.
+
+## Technologies Used
+
+- **React.js:** JavaScript library for building user interfaces.
+- **React Router Dom v6.0:** Declarative routing for React applications.
+- **Redux Toolkit:** State management library for React applications.
+- **Axios:** Promise-based HTTP client for making API requests.
+- **Tailwind CSS:** Utility-first CSS framework for building custom user interfaces.
+- **Tailwind CSS Pre-Processor Plugin:** Plugin for Tailwind CSS that adds pre-defined styles and components.
+- **SweetAlert2:** JavaScript library for creating beautiful and customizable toast messages.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
