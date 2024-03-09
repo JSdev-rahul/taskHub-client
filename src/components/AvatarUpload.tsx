@@ -8,7 +8,7 @@ const AvatarUpload: React.FC<iAvatarUploadProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="w-full flex justify-center my-4">
+      <div className="w-full flex justify-center my-4 ">
         <img
           loading="lazy"
           src={userAvatar?.url}
@@ -16,7 +16,7 @@ const AvatarUpload: React.FC<iAvatarUploadProps> = ({
           className="w-32 h-32 object-fill object-center rounded-full"
         />
       </div>
-      <div className="relative overflow-hidden contents">
+      <div className="relative overflow-hidden ">
         {/* Custom file upload button */}
         <button
           disabled={files ? true : false}

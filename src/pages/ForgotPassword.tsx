@@ -28,6 +28,7 @@ const ForgotPassword = () => {
   const [timer, setTimer] = useState<any>(null)
   const [isOtpPage, setIsOtpPage] = useState<boolean>(false)
   const [toggleNewPasswordFiled, setToggleNewPasswordFiled] = useState(false)
+  const [isOtpSubmit, setIsOtpSubmit] = useState<boolean>(false)
 
   const formik = useFormik<iForgotPasswordForm>({
     initialValues,
@@ -63,16 +64,20 @@ const ForgotPassword = () => {
   })
 
   const handleOtpVerification = () => {
+    setIsOtpSubmit(true)
     const email = formik.values.email
     dispatch(authsAsyncThunk.verifyOtpAsyncThunk({ email, otp }))
       .unwrap()
       .then(() => {
+        setIsOtpSubmit(false)
         setIsOtpPage(false)
         setToggleNewPasswordFiled(true)
 
         // navigate(routingConfig.home)
       })
-      .catch(() => {})
+      .catch(() => {
+        setIsOtpSubmit(false)
+      })
   }
 
   const handleRegenerateOTP = () => {
@@ -97,6 +102,7 @@ const ForgotPassword = () => {
           setIsOtpPage={setIsOtpPage}
           time={time}
           timer={timer}
+          isOtpSubmit={isOtpSubmit}
         />
       ) : (
         <html className="h-full">

@@ -32,8 +32,10 @@ const userSlice = createSlice({
       usersAsyncThunk.getAllUsers.fulfilled,
       (state, action: PayloadAction<{ data: any }>) => {
         state.status = RequestStatus.Fulfilled
-        state.count = action.payload.data.count
-        state.users = action.payload.data.result // Access user property from payload
+        if (action.payload?.data) {
+          state.count = action.payload?.data?.count
+          state.users = action.payload?.data?.result // Access user property from payload
+        }
       }
     )
     builder.addCase(usersAsyncThunk.getAllUsers.rejected, (state) => {

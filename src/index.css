@@ -27,3 +27,17 @@ code {
   flex-shrink: 0;
   border: none !important;
 }
+
+body::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(218, 213, 204); /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(200, 200, 220); /* color of the scroll thumb */
+  border-radius: 0px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(36, 41, 186); /* creates padding around scroll thumb */
+}

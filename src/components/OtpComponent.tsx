@@ -11,6 +11,7 @@ const OtpComponent: React.FC<iOtpComponentProps> = ({
   handleRegenerateOTP,
   handleOtpVerification,
   setIsOtpPage,
+  isOtpSubmit,
 }) => {
   const formattedTime = `${String(Math.floor(time / 60)).padStart(
     2,
@@ -18,10 +19,12 @@ const OtpComponent: React.FC<iOtpComponentProps> = ({
   )}:${String(time % 60).padStart(2, "0")}`
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="flex w-[95%] sm:w-[30%] rounded-2xl flex-col items-center border border-gray-950 bg-slate-50 p-10">
-        <h2 className="text-lg font-semibold mb-4">Enter your OTP</h2>
-        <p className="mb-4 text-center">
+    <div className="flex justify-center items-center h-screen ">
+      <div className="flex w-[95%] sm:w-[30%] rounded-2xl flex-col shadow-2xl  items-center border dark:bg-slate-900 dark:border-gray-700 border-gray-950 bg-slate-50 p-10">
+        <h2 className="text-lg font-semibold mb-4 dark:text-white text-black">
+          Enter your OTP
+        </h2>
+        <p className="mb-4 text-center dark:text-white text-black">
           OTP sent to your registered email id. Please check.
         </p>
         <div className="flex w-56 h-28 justify-center items-center">
@@ -41,9 +44,11 @@ const OtpComponent: React.FC<iOtpComponentProps> = ({
           />
         </div>
         {time === 0 ? (
-          <p className="text-sm text-blue-600">Click to regnarte new otp</p>
+          <p className="text-sm text-blue-600 dark:text-white ">
+            Click to regnarte new otp
+          </p>
         ) : (
-          <h1>Time:{formattedTime}</h1>
+          <h1 className="dark:text-white text-black">Time:{formattedTime}</h1>
         )}
         <div className="flex mt-4">
           <button
@@ -54,7 +59,7 @@ const OtpComponent: React.FC<iOtpComponentProps> = ({
             Regenerate OTP
           </button>
           <button
-            disabled={otp.length >= 4 ? false : true}
+            disabled={otp.length >= 4 ? false : isOtpSubmit ? false : true}
             onClick={() => handleOtpVerification()}
             className="px-4 py-2 text-xs font-semibold disabled:bg-slate-400 disabled:cursor-not-allowed shadow-2xl bg-green-500 text-white rounded"
           >

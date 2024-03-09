@@ -44,6 +44,7 @@ export interface iOtpComponentProps {
   handleRegenerateOTP: () => void
   handleOtpVerification: () => void
   setIsOtpPage: React.Dispatch<boolean>
+  isOtpSubmit?: boolean
 }
 
 interface iOptions {

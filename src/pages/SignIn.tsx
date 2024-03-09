@@ -21,6 +21,7 @@ const SignIn = () => {
   const [time, setTime] = useState<number>(180)
   const [timer, setTimer] = useState<any>(null)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
+  const [isOtpSubmit, setIsOtpSubmit] = useState<boolean>(false)
   const [initialValues, setInitialValues] = useState<iSignInForm>({
     email: "super-admin@gmail.com",
     password: "admin123",
@@ -56,13 +57,17 @@ const SignIn = () => {
   }, [])
 
   const handleOtpVerification = () => {
+    setIsOtpSubmit(true)
     const email = formik.values.email
     dispatch(authsAsyncThunk.verifyOtpAsyncThunk({ email, otp }))
       .unwrap()
       .then(() => {
+        setIsOtpSubmit(false)
         navigate(routingConfig.home)
       })
-      .catch(() => {})
+      .catch(() => {
+        setIsOtpSubmit(false)
+      })
   }
 
   const handleRegenerateOTP = () => {
@@ -113,9 +118,10 @@ const SignIn = () => {
       setIsOtpPage={setIsOtpPage}
       time={time}
       timer={timer}
+      isOtpSubmit={isOtpSubmit}
     />
   ) : (
-    <div className="dark:bg-slate-900  flex h-full items-center py-10 drop-shadow-2xl">
+    <div className="dark:bg-slate-900 bg-white  flex h-full items-center py-10 drop-shadow-2xl">
       <main className="w-full max-w-md mx-auto p-6">
         <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <div className="p-4 sm:p-7">
